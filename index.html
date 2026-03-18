@@ -1364,4 +1364,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Bind toast buttons
   document.querySelectorAll('[data-toast]').forEach(function(btn) {
-    btn.addEventListener('click', function() { showToast(btn.getAttribute('
+    btn.addEventListener('click', function() { showToast(btn.getAttribute('data-toast')); });
+  });
+
+});
+</script>
+</body>
+</html>
