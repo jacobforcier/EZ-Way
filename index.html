@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EZ Way LLC — The #30 Catcher+</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:    #1b2b3a;
+      --navy2:   #243446;
+      --steel:   #3e5468;
+      --mid:     #7a95a8;
+      --pale:    #c8d8e4;
+      --fog:     #e8eff4;
+      --white:   #f7f9fb;
+      --paper:   #ffffff;
+      --accent:  #2a6496;
+      --accent2: #1a4f78;
+      --gold:    #b07d2e;
+      --shadow:  rgba(27,43,58,0.10);
+      --shadow2: rgba(27,43,58,0.18);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--white);
+      color: var(--navy);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    /* ══════════════════════════════════════
+       NAV
+    ══════════════════════════════════════ */
+    nav {
+      position: fixed; top:0; left:0; right:0; z-index:200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5vw; height: 68px;
+      background: var(--paper);
+      border-bottom: 1px solid var(--pale);
+      box-shadow: 0 2px 16px var(--shadow);
+    }
+
+    .nav-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.45rem;
+      color: var(--navy);
+      letter-spacing: 0.01em;
+      cursor: pointer;
+    }
+    .nav-logo span { color: var(--accent); }
+
+    .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+
+    .nav-links a {
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--steel);
+      letter-spacing: 0.03em;
+      transition: color 0.2s;
+      cursor: pointer;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--accent); }
+
+    .nav-actions { display: flex; align-items: center; gap: 1rem; }
+
+    .cart-btn {
+      position: relative;
+      background: none; border: none; cursor: pointer;
+      padding: 0.4rem 0.6rem;
+      color: var(--navy);
+      font-size: 1.25rem;
+      transition: color 0.2s;
+    }
+    .cart-btn:hover { color: var(--accent); }
+
+    .cart-badge {
+      position: absolute; top: -2px; right: -2px;
+      background: var(--accent); color: #fff;
+      font-size: 0.65rem; font-weight: 600;
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; transform: scale(0.5);
+      transition: all 0.25s;
+    }
+    .cart-badge.show { opacity: 1; transform: scale(1); }
+
+    .btn {
+      display: inline-block;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      font-size: 0.88rem;
+      letter-spacing: 0.05em;
+      text-decoration: none;
+      padding: 0.65rem 1.5rem;
+      border-radius: 3px;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-primary:hover { background: var(--accent2); }
+    .btn-outline { background: transparent; color: var(--accent); border: 1.5px solid var(--accent); }
+    .btn-outline:hover { background: var(--accent); color: #fff; }
+    .btn-gold { background: var(--gold); color: #fff; }
+    .btn-gold:hover { background: #9a6d27; }
+    .btn-lg { padding: 0.85rem 2.2rem; font-size: 1rem; }
+
+    /* ══════════════════════════════════════
+       PAGE SYSTEM
+    ══════════════════════════════════════ */
+    .page { display: none; padding-top: 68px; }
+    .page.active { display: block; }
+
+    /* ══════════════════════════════════════
+       SECTIONS
+    ══════════════════════════════════════ */
+    section { padding: 90px 5vw; }
+
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      line-height: 1.15;
+      color: var(--navy);
+      margin-bottom: 1.25rem;
+    }
+
+    .section-sub {
+      font-size: 1.05rem;
+      color: var(--steel);
+      max-width: 520px;
+      line-height: 1.75;
+    }
+
+    /* ══════════════════════════════════════
+       HOME — HERO
+    ══════════════════════════════════════ */
+    #hero {
+      min-height: calc(100vh - 68px);
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: center;
+      gap: 5vw;
+      padding: 80px 5vw 60px;
+      background: linear-gradient(135deg, var(--white) 60%, var(--fog) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    #hero::before {
+      content: '';
+      position: absolute;
+      top: -120px; right: -120px;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(42,100,150,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(42,100,150,0.09);
+      padding: 0.35rem 0.9rem;
+      border-radius: 2px;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.8rem, 5.5vw, 4.5rem);
+      line-height: 1.05;
+      color: var(--navy);
+      margin-bottom: 1.5rem;
+    }
+    .hero-title em { font-style: normal; color: var(--accent); }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      color: var(--steel);
+      max-width: 460px;
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+    }
+
+    .btn-group { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+
+    .hero-stats {
+      display: flex; gap: 2.5rem;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--pale);
+    }
+    .stat-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.2rem;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.78rem; font-weight: 500;
+      color: var(--mid); letter-spacing: 0.06em;
+      text-transform: uppercase; margin-top: 0.25rem;
+    }
+
+    .hero-visual {
+      display: flex; justify-content: center; align-items: center;
+      position: relative;
+    }
+
+    .product-card-hero {
+      background: var(--paper);
+      border-radius: 6px;
+      box-shadow: 0 20px 60px var(--shadow2), 0 4px 16px var(--shadow);
+      overflow: hidden;
+      max-width: 380px;
+      width: 100%;
+    }
+
+    .product-card-hero img {
+      width: 100%; display: block;
+      filter: saturate(0.9) contrast(1.02);
+    }
+
+    .product-card-hero-foot {
+      padding: 1.25rem 1.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+      border-top: 1px solid var(--fog);
+    }
+
+    .product-card-hero-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.05rem;
+      color: var(--navy);
+    }
+
+    .product-card-hero-price {
+      font-size: 1.2rem; font-weight: 600;
+      color: var(--accent);
+    }
+
+    /* ══════════════════════════════════════
+       HOME — TICKER
+    ══════════════════════════════════════ */
+    .ticker {
+      background: var(--navy);
+      color: var(--pale);
+      padding: 0.65rem 0;
+      overflow: hidden; white-space: nowrap;
+    }
+    .ticker-inner {
+      display: inline-block;
+      animation: ticker 22s linear infinite;
+      font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 0.18em; text-transform: uppercase;
+    }
+    @keyframes ticker {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .ticker-sep { margin: 0 1.5rem; color: var(--accent); }
+
+    /* ══════════════════════════════════════
+       HOME — PRODUCT SECTION
+    ══════════════════════════════════════ */
+    #product { background: var(--paper); }
+    .product-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5vw; align-items: center;
+    }
+    .product-desc { color: var(--steel); line-height: 1.8; margin-bottom: 1.5rem; }
+    .product-img-duo {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .product-img-duo img {
+      width: 100%; display: block;
+      border-radius: 4px;
+      box-shadow: 0 6px 24px var(--shadow);
+      filter: saturate(0.9);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .product-img-duo img:first-child { grid-column: span 2; }
+    .product-img-duo img:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 36px var(--shadow2);
+    }
+
+    /* ══════════════════════════════════════
+       HOME — FEATURES
+    ══════════════════════════════════════ */
+    #features { background: var(--fog); }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .feature-card {
+      background: var(--paper);
+      border-radius: 5px;
+      padding: 2rem 1.75rem;
+      box-shadow: 0 2px 12px var(--shadow);
+      border-top: 3px solid transparent;
+      transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+    }
+    .feature-card:hover {
+      border-top-color: var(--accent);
+      transform: translateY(-4px);
+      box-shadow: 0 10px 28px var(--shadow2);
+    }
+    .feature-icon {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+    .feature-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.15rem;
+      color: var(--navy);
+      margin-bottom: 0.5rem;
+    }
+    .feature-desc { font-size: 0.9rem; color: var(--steel); line-height: 1.7; }
+
+    /* ══════════════════════════════════════
+       HOME — HOW IT WORKS
+    ══════════════════════════════════════ */
+    #how { background: var(--paper); }
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      margin-top: 3.5rem;
+    }
+    .step { text-align: center; }
+    .step-dot {
+      width: 56px; height: 56px;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.25rem;
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.4rem;
+      box-shadow: 0 4px 16px rgba(42,100,150,0.25);
+    }
+    .step-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.1rem;
+      color: var(--navy);
+      margin-bottom: 0.5rem;
+    }
+    .step-desc { font-size: 0.88rem; color: var(--steel); line-height: 1.65; }
+
+    /* ══════════════════════════════════════
+       HOME — TESTIMONIALS
+    ══════════════════════════════════════ */
+    #testimonials { background: var(--fog); }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .testimonial {
+      background: var(--paper);
+      border-radius: 5px;
+      padding: 2rem;
+      box-shadow: 0 2px 12px var(--shadow);
+    }
+    .testimonial-stars { color: var(--gold); margin-bottom: 0.75rem; font-size: 0.95rem; }
+    .testimonial-text { font-size: 0.93rem; color: var(--steel); line-height: 1.75; margin-bottom: 1.25rem; font-style: italic; }
+    .testimonial-author { font-weight: 600; color: var(--navy); font-size: 0.9rem; }
+    .testimonial-role { font-size: 0.78rem; color: var(--mid); margin-top: 0.2rem; }
+
+    /* ══════════════════════════════════════
+       HOME — CONTACT
+    ══════════════════════════════════════ */
+    #contact { background: var(--navy); color: var(--white); }
+    #contact .section-label { color: var(--pale); }
+    #contact .section-title { color: #fff; }
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1.2fr;
+      gap: 5vw; align-items: start;
+    }
+    .contact-intro { color: var(--pale); line-height: 1.8; margin-bottom: 2.5rem; max-width: 400px; }
+    .contact-item { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.75rem; }
+    .contact-icon {
+      width: 40px; height: 40px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 3px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0;
+    }
+    .contact-item-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--pale); margin-bottom: 0.2rem; }
+    .contact-item-val { color: #fff; font-size: 0.95rem; }
+
+    .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-field { display: flex; flex-direction: column; gap: 0.3rem; }
+    label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--pale); }
+    input, select, textarea {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.93rem;
+      padding: 0.72rem 1rem;
+      border-radius: 3px;
+      outline: none;
+      transition: border-color 0.2s, background 0.2s;
+      width: 100%;
+    }
+    input::placeholder, textarea::placeholder { color: rgba(255,255,255,0.35); }
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--pale);
+      background: rgba(255,255,255,0.11);
+    }
+    select option { background: var(--navy2); }
+    textarea { resize: vertical; min-height: 110px; }
+    .form-submit {
+      width: 100%; padding: 0.9rem;
+      background: var(--accent); color: #fff;
+      font-family: 'DM Sans', sans-serif; font-weight: 600;
+      font-size: 0.95rem; letter-spacing: 0.06em;
+      border: none; border-radius: 3px;
+      cursor: pointer; transition: background 0.2s;
+      margin-top: 0.25rem;
+    }
+    .form-submit:hover { background: var(--accent2); }
+
+    /* ══════════════════════════════════════
+       ABOUT PAGE
+    ══════════════════════════════════════ */
+    .page-hero {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
+      color: #fff;
+      padding: 80px 5vw 70px;
+      text-align: center;
+    }
+    .page-hero .section-label { color: var(--pale); }
+    .page-hero .section-title { color: #fff; margin: 0 auto 1rem; }
+    .page-hero p { color: var(--pale); max-width: 560px; margin: 0 auto; font-size: 1.05rem; line-height: 1.8; }
+
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5vw; align-items: center;
+    }
+    .about-img {
+      width: 100%; display: block;
+      border-radius: 5px;
+      box-shadow: 0 10px 36px var(--shadow2);
+      filter: saturate(0.9);
+    }
+    .about-body { color: var(--steel); line-height: 1.85; margin-bottom: 1.25rem; }
+    .values-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1.25rem; margin-top: 3.5rem;
+    }
+    .value-card {
+      background: var(--paper);
+      border-left: 3px solid var(--accent);
+      padding: 1.25rem 1.5rem;
+      border-radius: 0 4px 4px 0;
+      box-shadow: 0 2px 10px var(--shadow);
+    }
+    .value-title { font-family: 'DM Serif Display', serif; font-size: 1.05rem; color: var(--navy); margin-bottom: 0.4rem; }
+    .value-desc { font-size: 0.87rem; color: var(--steel); line-height: 1.65; }
+
+    /* ══════════════════════════════════════
+       SHOP PAGE
+    ══════════════════════════════════════ */
+    #shop-page { background: var(--white); }
+
+    .shop-layout {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 3rem;
+      padding: 60px 5vw 90px;
+      align-items: start;
+    }
+
+    /* Product detail */
+    .product-detail-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .product-images { display: flex; flex-direction: column; gap: 1rem; }
+    .product-main-img {
+      width: 100%; display: block;
+      border-radius: 5px;
+      box-shadow: 0 6px 24px var(--shadow);
+      filter: saturate(0.9);
+      border: 1px solid var(--pale);
+    }
+    .product-thumb-row { display: flex; gap: 0.75rem; }
+    .product-thumb {
+      width: 80px; height: 80px;
+      object-fit: cover;
+      border-radius: 3px;
+      border: 2px solid var(--pale);
+      cursor: pointer;
+      transition: border-color 0.2s;
+      filter: saturate(0.85);
+    }
+    .product-thumb:hover, .product-thumb.active { border-color: var(--accent); }
+
+    .product-info {}
+    .product-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2rem; color: var(--navy);
+      line-height: 1.15; margin-bottom: 0.5rem;
+    }
+    .product-sku { font-size: 0.78rem; color: var(--mid); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.25rem; }
+    .product-stars { color: var(--gold); font-size: 0.9rem; margin-bottom: 0.25rem; }
+    .product-review-count { font-size: 0.82rem; color: var(--mid); }
+    .product-price-block { margin: 1.5rem 0; }
+    .product-price {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.4rem; color: var(--accent);
+    }
+    .product-price-note { font-size: 0.82rem; color: var(--mid); margin-top: 0.2rem; }
+    .product-divider { height: 1px; background: var(--pale); margin: 1.5rem 0; }
+    .product-desc-short { color: var(--steel); line-height: 1.8; margin-bottom: 1.5rem; font-size: 0.97rem; }
+
+    .qty-row { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.25rem; }
+    .qty-label { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--navy); }
+    .qty-ctrl { display: flex; align-items: center; border: 1.5px solid var(--pale); border-radius: 3px; overflow: hidden; }
+    .qty-btn {
+      width: 36px; height: 36px;
+      background: none; border: none;
+      font-size: 1.1rem; color: var(--navy);
+      cursor: pointer; transition: background 0.2s;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .qty-btn:hover { background: var(--fog); }
+    .qty-val {
+      width: 40px; height: 36px;
+      text-align: center;
+      font-size: 0.95rem; font-weight: 600;
+      color: var(--navy);
+      border: none; border-left: 1.5px solid var(--pale); border-right: 1.5px solid var(--pale);
+      background: none; outline: none;
+    }
+
+    .add-to-cart-btn {
+      width: 100%; padding: 1rem;
+      background: var(--accent); color: #fff;
+      font-family: 'DM Sans', sans-serif; font-weight: 600;
+      font-size: 1rem; letter-spacing: 0.06em;
+      border: none; border-radius: 3px;
+      cursor: pointer; transition: background 0.2s;
+      margin-bottom: 0.75rem;
+    }
+    .add-to-cart-btn:hover { background: var(--accent2); }
+
+    .trust-badges {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+      margin-top: 1.25rem;
+    }
+    .badge {
+      display: flex; align-items: center; gap: 0.4rem;
+      font-size: 0.78rem; color: var(--steel);
+    }
+    .badge-icon { color: var(--accent); }
+
+    .product-tabs { margin-top: 3rem; }
+    .tab-nav { display: flex; border-bottom: 2px solid var(--pale); }
+    .tab-btn {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600; font-size: 0.88rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      background: none; border: none;
+      padding: 0.75rem 1.5rem;
+      color: var(--mid); cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+    .tab-panel { display: none; padding: 2rem 0; color: var(--steel); line-height: 1.8; font-size: 0.95rem; }
+    .tab-panel.active { display: block; }
+    .tab-panel ul { padding-left: 1.5rem; margin-top: 0.75rem; }
+    .tab-panel li { margin-bottom: 0.5rem; }
+    .tab-panel table { width: 100%; border-collapse: collapse; margin-top: 0.75rem; }
+    .tab-panel td { padding: 0.6rem 1rem; border-bottom: 1px solid var(--pale); font-size: 0.9rem; }
+    .tab-panel td:first-child { font-weight: 600; color: var(--navy); width: 40%; }
+
+    /* Cart sidebar */
+    .cart-sidebar {
+      background: var(--paper);
+      border-radius: 6px;
+      box-shadow: 0 4px 24px var(--shadow2);
+      border: 1px solid var(--pale);
+      position: sticky; top: 88px;
+      overflow: hidden;
+    }
+    .cart-header {
+      background: var(--navy);
+      color: #fff;
+      padding: 1.1rem 1.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .cart-title { font-family: 'DM Serif Display', serif; font-size: 1.1rem; }
+    .cart-count-label { font-size: 0.78rem; color: var(--pale); }
+    .cart-items { padding: 1rem 1.5rem; min-height: 80px; }
+    .cart-empty { color: var(--mid); font-size: 0.88rem; text-align: center; padding: 1.5rem 0; }
+    .cart-item {
+      display: flex; align-items: center; gap: 0.75rem;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--fog);
+      animation: slideIn 0.25s ease;
+    }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(-10px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+    .cart-item-img {
+      width: 52px; height: 52px;
+      object-fit: cover;
+      border-radius: 3px;
+      border: 1px solid var(--pale);
+      filter: saturate(0.85);
+    }
+    .cart-item-info { flex: 1; }
+    .cart-item-name { font-size: 0.85rem; font-weight: 600; color: var(--navy); }
+    .cart-item-qty { font-size: 0.78rem; color: var(--mid); }
+    .cart-item-price { font-size: 0.92rem; font-weight: 600; color: var(--accent); white-space: nowrap; }
+    .cart-remove {
+      background: none; border: none; cursor: pointer;
+      color: var(--pale); font-size: 1rem;
+      padding: 0.2rem; border-radius: 2px;
+      transition: color 0.2s;
+    }
+    .cart-remove:hover { color: #c0392b; }
+
+    .cart-footer { padding: 1.25rem 1.5rem; background: var(--fog); border-top: 1px solid var(--pale); }
+    .cart-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; font-size: 0.88rem; color: var(--steel); }
+    .cart-total-row { display: flex; justify-content: space-between; align-items: center; font-weight: 700; font-size: 1.05rem; color: var(--navy); margin: 0.75rem 0 1.1rem; padding-top: 0.75rem; border-top: 1px solid var(--pale); }
+    .checkout-btn {
+      width: 100%; padding: 0.9rem;
+      background: var(--gold); color: #fff;
+      font-family: 'DM Sans', sans-serif; font-weight: 700;
+      font-size: 0.95rem; letter-spacing: 0.05em;
+      border: none; border-radius: 3px;
+      cursor: pointer; transition: background 0.2s;
+    }
+    .checkout-btn:hover { background: #9a6d27; }
+    .cart-note { font-size: 0.72rem; color: var(--mid); text-align: center; margin-top: 0.75rem; }
+
+    /* ══════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════ */
+    footer {
+      background: var(--navy);
+      color: var(--pale);
+      padding: 2.5rem 5vw;
+      display: flex; align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-logo { font-family: 'DM Serif Display', serif; font-size: 1.2rem; color: #fff; }
+    .footer-logo span { color: var(--pale); font-size: 0.8rem; font-family: 'DM Sans', sans-serif; display: block; font-weight: 400; margin-top: 0.2rem; }
+    .footer-copy { font-size: 0.78rem; color: var(--mid); }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { font-size: 0.8rem; color: var(--mid); text-decoration: none; transition: color 0.2s; cursor: pointer; }
+    .footer-links a:hover { color: var(--pale); }
+
+    /* ══════════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════════ */
+    /* ── Hamburger button (hidden on desktop) ── */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+      z-index: 300;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px; height: 2px;
+      background: var(--navy);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ── Mobile drawer ── */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 68px; left: 0; right: 0;
+      background: var(--paper);
+      border-bottom: 2px solid var(--pale);
+      box-shadow: 0 8px 24px var(--shadow2);
+      z-index: 199;
+      flex-direction: column;
+      padding: 1rem 0;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      display: block;
+      padding: 1rem 2rem;
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--navy);
+      text-decoration: none;
+      border-bottom: 1px solid var(--fog);
+      transition: background 0.15s;
+    }
+    .mobile-menu a:last-child { border-bottom: none; }
+    .mobile-menu a:hover { background: var(--fog); color: var(--accent); }
+
+    @media (max-width: 960px) {
+      #hero { grid-template-columns: 1fr; text-align: center; }
+      .hero-sub { margin: 0 auto 2.5rem; }
+      .btn-group { justify-content: center; }
+      .hero-stats { justify-content: center; }
+      .hero-visual { margin-top: 3rem; }
+      .product-grid, .about-grid { grid-template-columns: 1fr; }
+      .features-grid { grid-template-columns: 1fr 1fr; }
+      .steps { grid-template-columns: 1fr 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .shop-layout { grid-template-columns: 1fr; }
+      .product-detail-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .nav-actions .btn { display: none; }
+    }
+
+    @media (max-width: 600px) {
+      section { padding: 60px 5vw; }
+      nav { padding: 0 1.25rem; }
+      #hero { padding: 60px 1.25rem 50px; }
+      .hero-title { font-size: 2.6rem; }
+      .hero-stats { gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
+      .stat-num { font-size: 1.8rem; }
+      .product-card-hero { max-width: 100%; }
+      .features-grid, .steps, .values-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .product-img-duo { grid-template-columns: 1fr; }
+      .product-img-duo img:first-child { grid-column: span 1; }
+      .page-hero { padding: 50px 1.25rem 40px; }
+      .page-hero .section-title { font-size: 1.9rem; }
+      .steps { gap: 1.5rem; }
+      .shop-layout { padding: 40px 1.25rem 60px; }
+      .product-thumb-row { gap: 0.5rem; }
+      .product-thumb { width: 64px; height: 64px; }
+      .product-name { font-size: 1.6rem; }
+      .product-price { font-size: 2rem; }
+      .trust-badges { gap: 0.75rem; }
+      .cart-sidebar { margin-top: 2rem; position: static; }
+      #contact { padding: 60px 1.25rem; }
+      .contact-intro { max-width: 100%; }
+      .about-grid { gap: 2rem; }
+      .values-grid { gap: 1rem; }
+      footer { flex-direction: column; align-items: flex-start; gap: 1rem; padding: 2rem 1.25rem; }
+      .footer-links { flex-wrap: wrap; gap: 1rem; }
+      .testimonials-grid { gap: 1rem; }
+      .tab-nav { overflow-x: auto; }
+      .tab-btn { white-space: nowrap; padding: 0.75rem 1rem; font-size: 0.8rem; }
+    }
+
+    /* ══════════════════════════════════════
+       ANIMATIONS
+    ══════════════════════════════════════ */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero-content > * { opacity: 0; animation: fadeUp 0.65s ease forwards; }
+    .hero-tag { animation-delay: 0.05s; }
+    .hero-title { animation-delay: 0.18s; }
+    .hero-sub { animation-delay: 0.32s; }
+    .btn-group { animation-delay: 0.46s; }
+    .hero-stats { animation-delay: 0.6s; }
+    .hero-visual { opacity: 0; animation: fadeUp 0.8s 0.35s ease forwards; }
+
+    /* toast */
+    .toast {
+      position: fixed; bottom: 2rem; right: 2rem; z-index: 9999;
+      background: var(--navy); color: #fff;
+      padding: 0.85rem 1.5rem;
+      border-radius: 4px;
+      font-size: 0.9rem; font-weight: 500;
+      box-shadow: 0 6px 24px var(--shadow2);
+      transform: translateY(20px); opacity: 0;
+      transition: all 0.3s;
+      pointer-events: none;
+    }
+    .toast.show { transform: translateY(0); opacity: 1; }
+    .toast-icon { color: #4caf50; margin-right: 0.4rem; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo" onclick="showPage('home')">EZ Way <span style="color:var(--accent)">LLC</span></div>
+  <ul class="nav-links">
+    <li><a href="#" onclick="showPage('home');return false;" id="nav-home" class="active">Home</a></li>
+    <li><a href="#" onclick="showPage('about');return false;" id="nav-about">About</a></li>
+    <li><a href="#" onclick="showPage('shop');return false;" id="nav-shop">Shop</a></li>
+    <li><a href="#" onclick="scrollToContact();return false;">Contact</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="cart-btn" onclick="showPage('shop')" title="View Cart">
+      🛒
+      <span class="cart-badge" id="cart-badge">0</span>
+    </button>
+    <a class="btn btn-primary" onclick="showPage('shop')" style="cursor:pointer">Order Now</a>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#" onclick="showPage('home');closeMenu();return false;">Home</a>
+  <a href="#" onclick="showPage('about');closeMenu();return false;">About</a>
+  <a href="#" onclick="showPage('shop');closeMenu();return false;">Shop</a>
+  <a href="#" onclick="scrollToContact();closeMenu();return false;">Contact</a>
+  <a href="#" onclick="showPage('shop');closeMenu();return false;" style="background:var(--accent);color:#fff;font-weight:600;text-align:center;margin:0.5rem 1rem;border-radius:3px;">Order Now</a>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"><span class="toast-icon">✓</span> <span id="toast-msg">Added to cart!</span></div>
+
+<!-- ══════════════════════════════════════
+     HOME PAGE
+══════════════════════════════════════ -->
+<div class="page active" id="page-home">
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-content">
+      <div class="hero-tag">⚙ Heating Maintenance Solutions</div>
+      <h1 class="hero-title">
+        The EasyWay<br>
+        <em>#30 Catcher+</em>
+      </h1>
+      <p class="hero-sub">
+        Purpose-built for heating professionals and homeowners who want reliable, no-fuss maintenance. The #30 Catcher+ takes the complexity out of the job.
+      </p>
+      <div class="btn-group">
+        <a class="btn btn-primary btn-lg" onclick="showPage('shop')" style="cursor:pointer">Shop Now</a>
+        <a class="btn btn-outline btn-lg" href="#product" style="cursor:pointer">Learn More</a>
+      </div>
+      <div class="hero-stats">
+        <div><div class="stat-num">30+</div><div class="stat-label">Years Experience</div></div>
+        <div><div class="stat-num">100%</div><div class="stat-label">US Support</div></div>
+        <div><div class="stat-num">★ 5.0</div><div class="stat-label">Customer Rating</div></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="product-card-hero">
+        <img src="https://static.wixstatic.com/media/7eba66_0e9cd757437b40fa938c0522a5edee7c~mv2.jpg" alt="EasyWay #30 Catcher+"/>
+        <div class="product-card-hero-foot">
+          <div class="product-card-hero-name">EasyWay #30 Catcher+</div>
+          <div class="product-card-hero-price">$89.99</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TICKER -->
+  <div class="ticker">
+    <div class="ticker-inner">
+      EZ Way LLC <span class="ticker-sep">◆</span> The #30 Catcher+ <span class="ticker-sep">◆</span> Heating Maintenance Made Simple <span class="ticker-sep">◆</span> Trusted by Professionals <span class="ticker-sep">◆</span> Built in the USA <span class="ticker-sep">◆</span> Fast Shipping <span class="ticker-sep">◆</span> EZ Way LLC <span class="ticker-sep">◆</span> The #30 Catcher+ <span class="ticker-sep">◆</span> Heating Maintenance Made Simple <span class="ticker-sep">◆</span> Trusted by Professionals <span class="ticker-sep">◆</span> Built in the USA <span class="ticker-sep">◆</span> Fast Shipping <span class="ticker-sep">◆</span>
+    </div>
+  </div>
+
+  <!-- PRODUCT -->
+  <section id="product" style="background:var(--paper)">
+    <div class="product-grid">
+      <div>
+        <div class="section-label">About the Product</div>
+        <h2 class="section-title">Engineered for Real-World Use</h2>
+        <p class="product-desc">The EasyWay #30 Catcher+ is a purpose-built heating maintenance tool designed to make complex jobs straightforward. Whether you're a seasoned HVAC technician or maintaining your own system, it delivers professional-grade results without the hassle.</p>
+        <p class="product-desc">Compatible with Extrol tanks and standard heating configurations, it fits where you need it and works the way you expect it to.</p>
+        <div class="btn-group">
+          <a class="btn btn-primary" onclick="showPage('shop')" style="cursor:pointer">Order Now — $89.99</a>
+          <a class="btn btn-outline" onclick="showPage('about')" style="cursor:pointer">Our Story</a>
+        </div>
+      </div>
+      <div class="product-img-duo">
+        <img src="https://static.wixstatic.com/media/7eba66_27dd8c33a1fb488095357bc623974f6f~mv2.jpg" alt="Catcher+ with Extrol Tank"/>
+        <img src="https://static.wixstatic.com/media/7eba66_0e9cd757437b40fa938c0522a5edee7c~mv2.jpg" alt="#30 Catcher+"/>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section id="features">
+    <div class="section-label">Why the Catcher+</div>
+    <h2 class="section-title">Built Different. Works Better.</h2>
+    <div class="features-grid">
+      <div class="feature-card"><div class="feature-icon">⚡</div><div class="feature-title">Easy Installation</div><p class="feature-desc">Any tech can install it fast without special tools or lengthy setup. Get in, get out, get it done.</p></div>
+      <div class="feature-card"><div class="feature-icon">🔧</div><div class="feature-title">Universal Compatibility</div><p class="feature-desc">Works with Extrol tanks and a wide range of residential and commercial heating systems out of the box.</p></div>
+      <div class="feature-card"><div class="feature-icon">🏗️</div><div class="feature-title">Durable Construction</div><p class="feature-desc">Heavy-duty materials built to handle real job site conditions — not a showroom, the field.</p></div>
+      <div class="feature-card"><div class="feature-icon">⏱️</div><div class="feature-title">Saves Time Per Job</div><p class="feature-desc">The Catcher+ streamlines the maintenance process, meaningfully cutting service time on each visit.</p></div>
+      <div class="feature-card"><div class="feature-icon">🏆</div><div class="feature-title">Professional Grade</div><p class="feature-desc">Trusted by licensed HVAC professionals and savvy homeowners alike. A real tool for real work.</p></div>
+      <div class="feature-card"><div class="feature-icon">📞</div><div class="feature-title">Real Local Support</div><p class="feature-desc">EZ Way LLC is a real company with real people. Call us — we'll actually pick up and help you out.</p></div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="how" style="background:var(--paper)">
+    <div class="section-label">The Process</div>
+    <h2 class="section-title">How It Works</h2>
+    <div class="steps">
+      <div class="step"><div class="step-dot">1</div><div class="step-title">Place Your Order</div><p class="step-desc">Shop online or call us directly. We'll make sure you get exactly what you need.</p></div>
+      <div class="step"><div class="step-dot">2</div><div class="step-title">Fast Shipping</div><p class="step-desc">Your Catcher+ ships quickly and arrives ready to install — no assembly required.</p></div>
+      <div class="step"><div class="step-dot">3</div><div class="step-title">Simple Install</div><p class="step-desc">Follow the included guide or call us. Most installs take under 30 minutes.</p></div>
+      <div class="step"><div class="step-dot">4</div><div class="step-title">Easier Maintenance</div><p class="step-desc">Enjoy a heating system that's simpler to maintain, season after season.</p></div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials">
+    <div class="section-label">Customer Reviews</div>
+    <h2 class="section-title">Trusted in the Field</h2>
+    <div class="testimonials-grid">
+      <div class="testimonial"><div class="testimonial-stars">★★★★★</div><p class="testimonial-text">"Saved me a ton of time on my last three service calls. Installation is a breeze and it fits perfectly with my Extrol setup."</p><div class="testimonial-author">Mike R.</div><div class="testimonial-role">HVAC Technician — 18 yrs</div></div>
+      <div class="testimonial"><div class="testimonial-stars">★★★★★</div><p class="testimonial-text">"I was skeptical at first but the folks at EZ Way walked me through everything. Product arrived fast and works exactly as advertised."</p><div class="testimonial-author">Sandra T.</div><div class="testimonial-role">Homeowner</div></div>
+      <div class="testimonial"><div class="testimonial-stars">★★★★★</div><p class="testimonial-text">"Solid construction, easy to use, great customer service. Exactly what my shop needed. Will be ordering more for the whole team."</p><div class="testimonial-author">Dave K.</div><div class="testimonial-role">Heating Contractor</div></div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact-section" style="background:var(--navy);padding:90px 5vw">
+    <div class="contact-grid">
+      <div>
+        <div class="section-label" style="color:var(--pale)">Get in Touch</div>
+        <h2 class="section-title" style="color:#fff">Let's Get<br>to Work</h2>
+        <p class="contact-intro">Questions about the #30 Catcher+? Ready to order? We're here. A real person will get back to you fast.</p>
+        <div class="contact-item"><div class="contact-icon">📞</div><div><div class="contact-item-label">Phone</div><div class="contact-item-val">(XXX) XXX-XXXX</div></div></div>
+        <div class="contact-item"><div class="contact-icon">✉️</div><div><div class="contact-item-label">Email</div><div class="contact-item-val"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5e373038311e3b3f2d27293f276d6e703d3133">[email&#160;protected]</a></div></div></div>
+        <div class="contact-item"><div class="contact-icon">🕐</div><div><div class="contact-item-label">Hours</div><div class="contact-item-val">Mon – Fri, 8am – 5pm</div></div></div>
+      </div>
+      <div class="contact-form">
+        <div class="form-row">
+          <div class="form-field"><label>First Name</label><input type="text" placeholder="John"/></div>
+          <div class="form-field"><label>Last Name</label><input type="text" placeholder="Smith"/></div>
+        </div>
+        <div class="form-field"><label>Email</label><input type="email" placeholder="john@example.com"/></div>
+        <div class="form-field"><label>Phone</label><input type="tel" placeholder="(555) 000-0000"/></div>
+        <div class="form-field">
+          <label>I am a...</label>
+          <select><option value="">Select one</option><option>Homeowner</option><option>HVAC Technician</option><option>Heating Contractor</option><option>Other</option></select>
+        </div>
+        <div class="form-field"><label>Message</label><textarea placeholder="Tell us about your heating setup or what you need…"></textarea></div>
+        <button class="form-submit" onclick="showToast('Message sent! We\'ll be in touch soon.')">Send Message →</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ══════════════════════════════════════
+     ABOUT PAGE
+══════════════════════════════════════ -->
+<div class="page" id="page-about">
+  <div class="page-hero">
+    <div class="section-label">Our Story</div>
+    <h1 class="section-title">Built by People Who<br>Know the Work</h1>
+    <p>EZ Way LLC was founded by heating professionals who were tired of overcomplicated tools and under-supported customers. We built the #30 Catcher+ because we needed it ourselves.</p>
+  </div>
+  <section style="background:var(--paper)">
+    <div class="about-grid">
+      <img class="about-img" src="https://static.wixstatic.com/media/7eba66_27dd8c33a1fb488095357bc623974f6f~mv2.jpg" alt="EZ Way Product"/>
+      <div>
+        <div class="section-label">Who We Are</div>
+        <h2 class="section-title">EZ Way LLC</h2>
+        <p class="about-body">We're a small, independent company with a singular focus: making heating maintenance easier for everyone — from professional HVAC technicians to first-time homeowners tackling their own systems.</p>
+        <p class="about-body">The EasyWay #30 Catcher+ is our flagship product, born out of years of field experience and a genuine frustration with how complicated routine maintenance had become. We designed something better. Something simpler. Something that actually works.</p>
+        <p class="about-body">When you buy from EZ Way, you're not dealing with a faceless corporation. You get real people, real answers, and a product we stand behind completely.</p>
+        <a class="btn btn-primary" onclick="showPage('shop')" style="cursor:pointer;margin-top:0.5rem">Shop the Catcher+</a>
+      </div>
+    </div>
+  </section>
+  <section style="background:var(--fog)">
+    <div class="section-label">What We Stand For</div>
+    <h2 class="section-title">Our Values</h2>
+    <div class="values-grid">
+      <div class="value-card"><div class="value-title">Simplicity First</div><p class="value-desc">Every design decision we make is in service of making the job easier. No unnecessary complexity.</p></div>
+      <div class="value-card"><div class="value-title">Built to Last</div><p class="value-desc">We use durable materials because we know what it's like to have a tool fail mid-job.</p></div>
+      <div class="value-card"><div class="value-title">Real Support</div><p class="value-desc">Call us. Email us. We're here and we'll answer. No ticket queues, no chatbots.</p></div>
+      <div class="value-card"><div class="value-title">Fair Pricing</div><p class="value-desc">Professional quality shouldn't mean professional prices. We keep things accessible for everyone.</p></div>
+    </div>
+  </section>
+</div>
+
+<!-- ══════════════════════════════════════
+     SHOP PAGE
+══════════════════════════════════════ -->
+<div class="page" id="page-shop">
+  <div class="page-hero" style="padding:50px 5vw 45px">
+    <div class="section-label">Our Product</div>
+    <h1 class="section-title" style="font-size:clamp(1.8rem,3vw,2.5rem)">Shop EZ Way LLC</h1>
+  </div>
+
+  <div class="shop-layout">
+    <!-- Product Detail -->
+    <div>
+      <div class="product-detail-grid">
+        <!-- Images -->
+        <div class="product-images">
+          <img class="product-main-img" id="main-img"
+            src="https://static.wixstatic.com/media/7eba66_0e9cd757437b40fa938c0522a5edee7c~mv2.jpg"
+            alt="EasyWay #30 Catcher+"/>
+          <div class="product-thumb-row">
+            <img class="product-thumb active" onclick="switchImg(this,'https://static.wixstatic.com/media/7eba66_0e9cd757437b40fa938c0522a5edee7c~mv2.jpg')"
+              src="https://static.wixstatic.com/media/7eba66_0e9cd757437b40fa938c0522a5edee7c~mv2.jpg" alt="View 1"/>
+            <img class="product-thumb" onclick="switchImg(this,'https://static.wixstatic.com/media/7eba66_27dd8c33a1fb488095357bc623974f6f~mv2.jpg')"
+              src="https://static.wixstatic.com/media/7eba66_27dd8c33a1fb488095357bc623974f6f~mv2.jpg" alt="View 2"/>
+            <img class="product-thumb" onclick="switchImg(this,'https://static.wixstatic.com/media/7eba66_0e9cd757437b40fa938c0522a5edee7c~mv2.jpg')"
+              src="https://static.wixstatic.com/media/7eba66_0e9cd757437b40fa938c0522a5edee7c~mv2.jpg" alt="View 3"/>
+          </div>
+        </div>
+
+        <!-- Info -->
+        <div class="product-info">
+          <div class="product-name">EasyWay #30 Catcher+</div>
+          <div class="product-sku">SKU: EZW-30C-PLUS</div>
+          <div class="product-stars">★★★★★</div>
+          <div class="product-review-count">4.9 out of 5 — 47 reviews</div>
+          <div class="product-price-block">
+            <div class="product-price">$89.99</div>
+            <div class="product-price-note">Free shipping on orders over $75</div>
+          </div>
+          <div class="product-divider"></div>
+          <p class="product-desc-short">
+            The #30 Catcher+ is your all-in-one heating maintenance solution. Compatible with Extrol tanks and standard configurations. Durable, fast to install, and backed by real support.
+          </p>
+          <div class="qty-row">
+            <span class="qty-label">Qty</span>
+            <div class="qty-ctrl">
+              <button class="qty-btn" onclick="adjustQty(-1)">−</button>
+              <input class="qty-val" id="qty-input" type="number" value="1" min="1" max="99" readonly/>
+              <button class="qty-btn" onclick="adjustQty(1)">+</button>
+            </div>
+          </div>
+          <button class="add-to-cart-btn" onclick="addToCart()">Add to Cart</button>
+          <button class="btn btn-outline" style="width:100%" onclick="showToast('Checkout coming soon!')">Buy Now</button>
+          <div class="trust-badges">
+            <div class="badge"><span class="badge-icon">🔒</span> Secure Checkout</div>
+            <div class="badge"><span class="badge-icon">🚚</span> Fast Shipping</div>
+            <div class="badge"><span class="badge-icon">↩️</span> Easy Returns</div>
+            <div class="badge"><span class="badge-icon">📞</span> US-Based Support</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tabs -->
+      <div class="product-tabs">
+        <div class="tab-nav">
+          <button class="tab-btn active" onclick="switchTab(this,'tab-desc')">Description</button>
+          <button class="tab-btn" onclick="switchTab(this,'tab-specs')">Specifications</button>
+          <button class="tab-btn" onclick="switchTab(this,'tab-reviews')">Reviews (47)</button>
+        </div>
+        <div class="tab-panel active" id="tab-desc">
+          <p>The EasyWay #30 Catcher+ is engineered for heating professionals and homeowners who want a reliable, straightforward maintenance solution. Designed to work seamlessly with Extrol tanks and a broad range of residential and light-commercial systems, it eliminates the guesswork from routine maintenance tasks.</p>
+          <p style="margin-top:1rem">Key benefits include:</p>
+          <ul>
+            <li>Quick, tool-free installation in most configurations</li>
+            <li>Compatible with standard #30 tank fittings and Extrol expansion tanks</li>
+            <li>Durable materials rated for extended use under normal heating system pressures</li>
+            <li>Includes instruction guide and all necessary hardware</li>
+          </ul>
+        </div>
+        <div class="tab-panel" id="tab-specs">
+          <table>
+            <tr><td>Model</td><td>EZW-30C-PLUS</td></tr>
+            <tr><td>Compatibility</td><td>Extrol tanks, standard #30 fittings</td></tr>
+            <tr><td>Material</td><td>Heavy-duty alloy construction</td></tr>
+            <tr><td>Installation</td><td>Tool-free, under 30 minutes</td></tr>
+            <tr><td>Warranty</td><td>1-year limited warranty</td></tr>
+            <tr><td>Ships From</td><td>United States</td></tr>
+            <tr><td>In Box</td><td>Catcher+ unit, hardware kit, instruction guide</td></tr>
+          </table>
+        </div>
+        <div class="tab-panel" id="tab-reviews">
+          <div style="display:flex;flex-direction:column;gap:1.5rem">
+            <div><div style="display:flex;gap:0.5rem;align-items:center;margin-bottom:0.4rem"><span style="color:var(--gold)">★★★★★</span><strong style="font-size:0.9rem">Mike R.</strong><span style="font-size:0.78rem;color:var(--mid)">— Verified Purchase</span></div><p style="font-size:0.92rem;color:var(--steel)">"Saved me hours on service calls. Easy install, works great with my Extrol tank. Highly recommend."</p></div>
+            <div><div style="display:flex;gap:0.5rem;align-items:center;margin-bottom:0.4rem"><span style="color:var(--gold)">★★★★★</span><strong style="font-size:0.9rem">Sandra T.</strong><span style="font-size:0.78rem;color:var(--mid)">— Verified Purchase</span></div><p style="font-size:0.92rem;color:var(--steel)">"EZ Way's support team was incredibly helpful. Product works exactly as described."</p></div>
+            <div><div style="display:flex;gap:0.5rem;align-items:center;margin-bottom:0.4rem"><span style="color:var(--gold)">★★★★★</span><strong style="font-size:0.9rem">Dave K.</strong><span style="font-size:0.78rem;color:var(--mid)">— Verified Purchase</span></div><p style="font-size:0.92rem;color:var(--steel)">"Ordered three for my crew. Solid build, fair price, fast shipping. Will be back."</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar">
+      <div class="cart-header">
+        <div class="cart-title">Your Cart</div>
+        <div class="cart-count-label" id="cart-count-label">0 items</div>
+      </div>
+      <div class="cart-items" id="cart-items">
+        <div class="cart-empty" id="cart-empty">Your cart is empty.</div>
+      </div>
+      <div class="cart-footer">
+        <div class="cart-row"><span>Subtotal</span><span id="cart-subtotal">$0.00</span></div>
+        <div class="cart-row"><span>Shipping</span><span id="cart-shipping">—</span></div>
+        <div class="cart-total-row"><span>Total</span><span id="cart-total">$0.00</span></div>
+        <button class="checkout-btn" onclick="showToast('Secure checkout coming soon!')">Proceed to Checkout →</button>
+        <div class="cart-note">🔒 Secure & encrypted checkout</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    EZ Way LLC
+    <span>© 2025 All rights reserved.</span>
+  </div>
+  <div class="footer-copy">The EasyWay #30 Catcher+ — Heating Maintenance Made Simple</div>
+  <div class="footer-links">
+    <a href="#" onclick="showPage('home');return false;">Home</a>
+    <a href="#" onclick="showPage('about');return false;">About</a>
+    <a href="#" onclick="showPage('shop');return false;">Shop</a>
+    <a href="#" onclick="scrollToContact();return false;">Contact</a>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // ── MOBILE MENU ──
+  function toggleMenu() {
+    const menu = document.getElementById('mobile-menu');
+    const btn = document.getElementById('hamburger');
+    menu.classList.toggle('open');
+    btn.classList.toggle('open');
+  }
+  function closeMenu() {
+    document.getElementById('mobile-menu').classList.remove('open');
+    document.getElementById('hamburger').classList.remove('open');
+  }
+
+  // ── PAGE NAVIGATION ──
+  function showPage(name) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+    document.getElementById('page-' + name).classList.add('active');
+    const navEl = document.getElementById('nav-' + name);
+    if (navEl) navEl.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    closeMenu();
+  }
+
+  function scrollToContact() {
+    showPage('home');
+    setTimeout(() => {
+      document.getElementById('contact-section').scrollIntoView({ behavior: 'smooth' });
+    }, 100);
+  }
+
+  // ── CART STATE ──
+  let cart = [];
+  const PRICE = 89.99;
+
+  function addToCart() {
+    const qty = parseInt(document.getElementById('qty-input').value) || 1;
+    const existing = cart.find(i => i.id === 'EZW-30C');
+    if (existing) {
+      existing.qty += qty;
+    } else {
+      cart.push({ id: 'EZW-30C', name: 'EasyWay #30 Catcher+', price: PRICE, qty });
+    }
+    renderCart();
+    showToast('Added ' + qty + ' item' + (qty > 1 ? 's' : '') + ' to cart!');
+  }
+
+  function removeFromCart(id) {
+    cart = cart.filter(i => i.id !== id);
+    renderCart();
+  }
+
+  function renderCart() {
+    const container = document.getElementById('cart-items');
+    const empty = document.getElementById('cart-empty');
+    const badge = document.getElementById('cart-badge');
+    const countLabel = document.getElementById('cart-count-label');
+
+    const totalQty = cart.reduce((s, i) => s + i.qty, 0);
+    const subtotal = cart.reduce((s, i) => s + i.qty * i.price, 0);
+    const shipping = subtotal === 0 ? 0 : subtotal >= 75 ? 0 : 9.99;
+    const total = subtotal + shipping;
+
+    // badge
+    badge.textContent = totalQty;
+    badge.classList.toggle('show', totalQty > 0);
+    countLabel.textContent = totalQty + ' item' + (totalQty !== 1 ? 's' : '');
+
+    // items
+    const items = cart.map(item => `
+      <div class="cart-item">
+        <img class="cart-item-img"
+          src="https://static.wixstatic.com/media/7eba66_0e9cd757437b40fa938c0522a5edee7c~mv2.jpg"
+          alt="${item.name}"/>
+        <div class="cart-item-info">
+          <div class="cart-item-name">${item.name}</div>
+          <div class="cart-item-qty">Qty: ${item.qty}</div>
+        </div>
+        <div class="cart-item-price">$${(item.qty * item.price).toFixed(2)}</div>
+        <button class="cart-remove" onclick="removeFromCart('${item.id}')" title="Remove">✕</button>
+      </div>
+    `).join('');
+
+    if (cart.length === 0) {
+      empty.style.display = 'block';
+      container.innerHTML = '';
+      container.appendChild(empty);
+    } else {
+      empty.style.display = 'none';
+      container.innerHTML = items;
+    }
+
+    document.getElementById('cart-subtotal').textContent = '$' + subtotal.toFixed(2);
+    document.getElementById('cart-shipping').textContent = shipping === 0 && subtotal > 0 ? 'FREE' : shipping === 0 ? '—' : '$' + shipping.toFixed(2);
+    document.getElementById('cart-total').textContent = '$' + total.toFixed(2);
+  }
+
+  // ── QTY CONTROLS ──
+  function adjustQty(delta) {
+    const input = document.getElementById('qty-input');
+    let val = parseInt(input.value) + delta;
+    if (val < 1) val = 1;
+    if (val > 99) val = 99;
+    input.value = val;
+  }
+
+  // ── IMAGE SWITCHER ──
+  function switchImg(thumb, src) {
+    document.getElementById('main-img').src = src;
+    document.querySelectorAll('.product-thumb').forEach(t => t.classList.remove('active'));
+    thumb.classList.add('active');
+  }
+
+  // ── TABS ──
+  function switchTab(btn, panelId) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(panelId).classList.add('active');
+  }
+
+  // ── TOAST ──
+  function showToast(msg) {
+    co
