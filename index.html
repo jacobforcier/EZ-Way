@@ -289,22 +289,126 @@
       gap: 5vw; align-items: center;
     }
     .product-desc { color: var(--steel); line-height: 1.8; margin-bottom: 1.5rem; }
-    .product-img-duo {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-    }
-    .product-img-duo img {
+    .product-img-single img {
       width: 100%; display: block;
-      border-radius: 4px;
-      box-shadow: 0 6px 24px var(--shadow);
+      border-radius: 6px;
+      box-shadow: 0 8px 32px var(--shadow2);
       filter: saturate(0.9);
       transition: transform 0.3s, box-shadow 0.3s;
     }
-    .product-img-duo img:first-child { grid-column: span 2; }
-    .product-img-duo img:hover {
+    .product-img-single img:hover {
       transform: translateY(-4px);
-      box-shadow: 0 14px 36px var(--shadow2);
+      box-shadow: 0 16px 40px var(--shadow2);
+    }
+
+    /* ══════════════════════════════════════
+       ABOUT PAGE — CAROUSEL
+    ══════════════════════════════════════ */
+    .about-carousel {
+      position: relative;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 8px 32px var(--shadow2);
+      background: var(--navy);
+    }
+    .carousel-track {
+      display: flex;
+      transition: transform 0.5s ease;
+    }
+    .carousel-track img {
+      min-width: 100%;
+      width: 100%;
+      height: 380px;
+      object-fit: contain;
+      object-position: center;
+      display: block;
+      cursor: pointer;
+      background: var(--navy);
+    }
+    .carousel-controls {
+      position: absolute;
+      bottom: 1rem;
+      left: 0; right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+    }
+    .carousel-btn {
+      background: rgba(255,255,255,0.85);
+      border: none;
+      border-radius: 50%;
+      width: 34px; height: 34px;
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      transition: background 0.2s;
+      color: var(--navy);
+    }
+    .carousel-btn:hover { background: #fff; }
+    .carousel-dots { display: flex; gap: 0.4rem; }
+    .carousel-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.5);
+      cursor: pointer;
+      transition: background 0.2s;
+      border: none;
+      padding: 0;
+    }
+    .carousel-dot.active { background: #fff; }
+
+    /* ══════════════════════════════════════
+       LIGHTBOX
+    ══════════════════════════════════════ */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(10,18,26,0.93);
+      align-items: center;
+      justify-content: center;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox-img {
+      max-width: 90vw;
+      max-height: 85vh;
+      object-fit: contain;
+      border-radius: 4px;
+      box-shadow: 0 16px 64px rgba(0,0,0,0.6);
+      display: block;
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 1.25rem; right: 1.5rem;
+      background: none; border: none;
+      color: #fff; font-size: 2rem;
+      cursor: pointer; line-height: 1;
+      opacity: 0.75; transition: opacity 0.2s;
+    }
+    .lightbox-close:hover { opacity: 1; }
+    .lightbox-prev, .lightbox-next {
+      position: absolute;
+      top: 50%; transform: translateY(-50%);
+      background: rgba(255,255,255,0.15);
+      border: none; color: #fff;
+      font-size: 1.75rem;
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+    }
+    .lightbox-prev:hover, .lightbox-next:hover { background: rgba(255,255,255,0.3); }
+    .lightbox-prev { left: 1.25rem; }
+    .lightbox-next { right: 1.25rem; }
+    .lightbox-counter {
+      position: absolute;
+      bottom: 1.25rem; left: 50%; transform: translateX(-50%);
+      color: rgba(255,255,255,0.6);
+      font-size: 0.82rem; letter-spacing: 0.1em;
     }
 
     /* ══════════════════════════════════════
@@ -346,52 +450,45 @@
        HOME — HOW IT WORKS
     ══════════════════════════════════════ */
     #how { background: var(--paper); }
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 2rem;
-      margin-top: 3.5rem;
-    }
-    .step { text-align: center; }
-    .step-dot {
-      width: 56px; height: 56px;
-      background: var(--accent);
-      color: #fff;
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 1.25rem;
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.4rem;
-      box-shadow: 0 4px 16px rgba(42,100,150,0.25);
-    }
-    .step-title {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.1rem;
-      color: var(--navy);
-      margin-bottom: 0.5rem;
-    }
-    .step-desc { font-size: 0.88rem; color: var(--steel); line-height: 1.65; }
+
 
     /* ══════════════════════════════════════
        HOME — TESTIMONIALS
     ══════════════════════════════════════ */
-    #testimonials { background: var(--fog); }
-    .testimonials-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
+
+
+    /* ══════════════════════════════════════
+       ABOUT — CLIENTS / LOGOS
+    ══════════════════════════════════════ */
+    .clients-section { background: var(--paper); }
+
+    /* Desktop: evenly spaced full-width row */
+    .clients-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       gap: 1.5rem;
-      margin-top: 3rem;
+      margin-top: 2.5rem;
+      padding: 2.5rem 3rem;
+      background: var(--fog);
+      border-radius: 6px;
     }
-    .testimonial {
-      background: var(--paper);
-      border-radius: 5px;
-      padding: 2rem;
-      box-shadow: 0 2px 12px var(--shadow);
+    .clients-row img {
+      flex: 1;
+      min-width: 0;
+      width: 100%;
+      max-height: 90px;
+      object-fit: contain;
+      filter: grayscale(0.3);
     }
-    .testimonial-stars { color: var(--gold); margin-bottom: 0.75rem; font-size: 0.95rem; }
-    .testimonial-text { font-size: 0.93rem; color: var(--steel); line-height: 1.75; margin-bottom: 1.25rem; font-style: italic; }
-    .testimonial-author { font-weight: 600; color: var(--navy); font-size: 0.9rem; }
-    .testimonial-role { font-size: 0.78rem; color: var(--mid); margin-top: 0.2rem; }
+
+    /* Mobile: hidden on desktop */
+    .clients-ticker { display: none; }
+
+    @keyframes logo-scroll {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
 
     /* ══════════════════════════════════════
        HOME — CONTACT
@@ -537,7 +634,6 @@
     }
     .product-sku { font-size: 0.78rem; color: var(--mid); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.25rem; }
     .product-stars { color: var(--gold); font-size: 0.9rem; margin-bottom: 0.25rem; }
-    .product-review-count { font-size: 0.82rem; color: var(--mid); }
     .product-price-block { margin: 1.5rem 0; }
     .product-price {
       font-family: 'DM Serif Display', serif;
@@ -547,25 +643,7 @@
     .product-divider { height: 1px; background: var(--pale); margin: 1.5rem 0; }
     .product-desc-short { color: var(--steel); line-height: 1.8; margin-bottom: 1.5rem; font-size: 0.97rem; }
 
-    .qty-row { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.25rem; }
-    .qty-label { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--navy); }
-    .qty-ctrl { display: flex; align-items: center; border: 1.5px solid var(--pale); border-radius: 3px; overflow: hidden; }
-    .qty-btn {
-      width: 36px; height: 36px;
-      background: none; border: none;
-      font-size: 1.1rem; color: var(--navy);
-      cursor: pointer; transition: background 0.2s;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .qty-btn:hover { background: var(--fog); }
-    .qty-val {
-      width: 40px; height: 36px;
-      text-align: center;
-      font-size: 0.95rem; font-weight: 600;
-      color: var(--navy);
-      border: none; border-left: 1.5px solid var(--pale); border-right: 1.5px solid var(--pale);
-      background: none; outline: none;
-    }
+
 
     .add-to-cart-btn {
       width: 100%; padding: 1rem;
@@ -686,7 +764,9 @@
     }
     .footer-logo { font-family: 'DM Serif Display', serif; font-size: 1.2rem; color: #fff; }
     .footer-logo span { color: var(--pale); font-size: 0.8rem; font-family: 'DM Sans', sans-serif; display: block; font-weight: 400; margin-top: 0.2rem; }
-    .footer-copy { font-size: 0.78rem; color: var(--mid); }
+    .footer-copy { font-size: 0.78rem; color: var(--pale); }
+    .footer-copy a { color: var(--pale); text-decoration: underline; }
+    .footer-copy a:hover { color: #fff; }
     .footer-links { display: flex; gap: 1.5rem; }
     .footer-links a { font-size: 0.8rem; color: var(--mid); text-decoration: none; transition: color 0.2s; cursor: pointer; }
     .footer-links a:hover { color: var(--pale); }
@@ -751,8 +831,29 @@
       .hero-visual { margin-top: 3rem; }
       .product-grid, .about-grid { grid-template-columns: 1fr; }
       .features-grid { grid-template-columns: 1fr 1fr; }
-      .steps { grid-template-columns: 1fr 1fr; }
-      .testimonials-grid { grid-template-columns: 1fr; }
+      .clients-row { display: none; }
+      .clients-ticker {
+        display: block;
+        overflow: hidden;
+        margin-top: 2.5rem;
+        padding: 1.5rem 0;
+        background: var(--fog);
+        border-radius: 6px;
+      }
+      .clients-ticker-inner {
+        display: flex;
+        align-items: center;
+        gap: 2.5rem;
+        width: max-content;
+        animation: logo-scroll 18s linear infinite;
+      }
+      .clients-ticker-inner img {
+        height: 48px;
+        object-fit: contain;
+        filter: grayscale(0.3);
+        flex-shrink: 0;
+      }
+
       .contact-grid { grid-template-columns: 1fr; }
       .shop-layout { grid-template-columns: 1fr; }
       .product-detail-grid { grid-template-columns: 1fr; }
@@ -769,13 +870,11 @@
       .hero-stats { gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
       .stat-num { font-size: 1.8rem; }
       .product-card-hero { max-width: 100%; }
-      .features-grid, .steps, .values-grid { grid-template-columns: 1fr; }
+      .features-grid, .values-grid { grid-template-columns: 1fr; }
       .form-row { grid-template-columns: 1fr; }
-      .product-img-duo { grid-template-columns: 1fr; }
-      .product-img-duo img:first-child { grid-column: span 1; }
+
       .page-hero { padding: 50px 1.25rem 40px; }
       .page-hero .section-title { font-size: 1.9rem; }
-      .steps { gap: 1.5rem; }
       .shop-layout { padding: 40px 1.25rem 60px; }
       .product-thumb-row { gap: 0.5rem; }
       .product-thumb { width: 64px; height: 64px; }
@@ -789,7 +888,7 @@
       .values-grid { gap: 1rem; }
       footer { flex-direction: column; align-items: flex-start; gap: 1rem; padding: 2rem 1.25rem; }
       .footer-links { flex-wrap: wrap; gap: 1rem; }
-      .testimonials-grid { gap: 1rem; }
+
       .tab-nav { overflow-x: auto; }
       .tab-btn { white-space: nowrap; padding: 0.75rem 1rem; font-size: 0.8rem; }
     }
@@ -837,10 +936,6 @@
     <li><a href="#" data-contact="true">Contact</a></li>
   </ul>
   <div class="nav-actions">
-    <button class="cart-btn" data-page="shop" title="View Cart">
-      🛒
-      <span class="cart-badge" id="cart-badge">0</span>
-    </button>
     <a class="btn btn-primary" data-page="shop" style="cursor:pointer">Order Now</a>
     <button class="hamburger" id="hamburger" aria-label="Menu">
       <span></span><span></span><span></span>
@@ -868,13 +963,12 @@
   <!-- HERO -->
   <section id="hero">
     <div class="hero-content">
-      <div class="hero-tag">⚙ Heating Maintenance Solutions</div>
       <h1 class="hero-title">
         The EasyWay<br>
         <em>#30 Catcher+</em>
       </h1>
       <p class="hero-sub">
-        Purpose-built for heating professionals and homeowners who want reliable, no-fuss maintenance. The #30 Catcher+ takes the complexity out of the job.
+        Heavy Extrol tanks. Tight spaces. Awkward angles. Every HVAC tech knows the frustration. <em>There has to be a better way.</em>
       </p>
       <div class="btn-group">
         <a class="btn btn-primary btn-lg" data-page="shop" style="cursor:pointer">Shop Now</a>
@@ -900,7 +994,7 @@
   <!-- TICKER -->
   <div class="ticker">
     <div class="ticker-inner">
-      Easy Way LLC <span class="ticker-sep">◆</span> The #30 Catcher+ <span class="ticker-sep">◆</span> Heating Maintenance Made Simple <span class="ticker-sep">◆</span> Trusted by Professionals <span class="ticker-sep">◆</span> Built in the USA <span class="ticker-sep">◆</span> Fast Shipping <span class="ticker-sep">◆</span> Easy Way LLC <span class="ticker-sep">◆</span> The #30 Catcher+ <span class="ticker-sep">◆</span> Heating Maintenance Made Simple <span class="ticker-sep">◆</span> Trusted by Professionals <span class="ticker-sep">◆</span> Built in the USA <span class="ticker-sep">◆</span> Fast Shipping <span class="ticker-sep">◆</span>
+      Easy Way LLC <span class="ticker-sep">◆</span> The #30 Catcher+ <span class="ticker-sep">◆</span> Heating Maintenance Made Simple <span class="ticker-sep">◆</span> Trusted by Professionals <span class="ticker-sep">◆</span> Built in the USA <span class="ticker-sep">◆</span> Easy Way LLC <span class="ticker-sep">◆</span> The #30 Catcher+ <span class="ticker-sep">◆</span> Heating Maintenance Made Simple <span class="ticker-sep">◆</span> Trusted by Professionals <span class="ticker-sep">◆</span> Built in the USA <span class="ticker-sep">◆</span>
     </div>
   </div>
 
@@ -910,16 +1004,15 @@
       <div>
         <div class="section-label">About the Product</div>
         <h2 class="section-title">Engineered for Real-World Use</h2>
-        <p class="product-desc">The EasyWay #30 Catcher+ is built to make a frustrating job straightforward. Whether you're a seasoned HVAC technician or a homeowner tackling your own system, it delivers professional-grade results without the headache.</p>
-        <p class="product-desc">Compatible with Extrol tanks and standard heating configurations, it fits where you need it and works the way you expect it to.</p>
+        <p class="product-desc">The #30 Catcher+ uses heavy-duty steel clips to attach directly to the supply pipe the Extrol tank screws into. Slide the bag up beneath the tank, unscrew it, and it drops right in — clean and controlled. No spills, no second pair of hands, no mess.</p>
+        <p class="product-desc">Works perfectly every time.</p>
         <div class="btn-group">
           <a class="btn btn-primary" data-page="shop" style="cursor:pointer">Order Now — $140.00</a>
           <a class="btn btn-outline" data-page="about" style="cursor:pointer">Our Story</a>
         </div>
       </div>
-      <div class="product-img-duo">
+      <div class="product-img-single">
         <img src="https://static.wixstatic.com/media/7eba66_27dd8c33a1fb488095357bc623974f6f~mv2.jpg" alt="Catcher+ with Extrol Tank"/>
-        <img src="https://static.wixstatic.com/media/7eba66_0e9cd757437b40fa938c0522a5edee7c~mv2.jpg" alt="#30 Catcher+"/>
       </div>
     </div>
   </section>
@@ -929,37 +1022,15 @@
     <div class="section-label">Why the Catcher+</div>
     <h2 class="section-title">Built Different. Works Better.</h2>
     <div class="features-grid">
-      <div class="feature-card"><div class="feature-icon">⚡</div><div class="feature-title">Easy Installation</div><p class="feature-desc">Any tech can install it quickly, without special tools or a lengthy setup. Less time fumbling, more time moving on to the next job.</p></div>
-      <div class="feature-card"><div class="feature-icon">🔧</div><div class="feature-title">Universal Compatibility</div><p class="feature-desc">Works with Extrol tanks and a wide range of residential and commercial heating systems out of the box.</p></div>
-      <div class="feature-card"><div class="feature-icon">🏗️</div><div class="feature-title">Durable Construction</div><p class="feature-desc">Industrial-grade polyester mesh and reinforced nylon built to handle real job site conditions — designed for the field, not a showroom shelf.</p></div>
-      <div class="feature-card"><div class="feature-icon">⏱️</div><div class="feature-title">Saves Time Per Job</div><p class="feature-desc">The Catcher+ streamlines the maintenance process, meaningfully cutting service time on each visit.</p></div>
-      <div class="feature-card"><div class="feature-icon">🏆</div><div class="feature-title">Professional Grade</div><p class="feature-desc">Trusted by licensed HVAC professionals and savvy homeowners alike. A real tool for real work.</p></div>
-      <div class="feature-card"><div class="feature-icon">📞</div><div class="feature-title">Real Local Support</div><p class="feature-desc">Easy Way LLC is a real company with real people. Call us — we'll actually pick up and help you out.</p></div>
+      <div class="feature-card"><div class="feature-icon">⏱️</div><div class="feature-title">Faster Service Calls</div><p class="feature-desc">Cut time on every Extrol tank job. What used to be an awkward two-person struggle becomes a quick, clean one-man operation.</p></div>
+      <div class="feature-card"><div class="feature-icon">🛡️</div><div class="feature-title">No More Spills</div><p class="feature-desc">Eliminate the mess and liability that comes with mishandling a heavy, fluid-filled tank. The Catcher+ keeps it contained every time.</p></div>
+      <div class="feature-card"><div class="feature-icon">🏗️</div><div class="feature-title">Built to Last</div><p class="feature-desc">Industrial-grade polyester mesh, heavy-duty nylon, and reinforced steel clips — built for daily field use, not the occasional job.</p></div>
+      <div class="feature-card"><div class="feature-icon">🔧</div><div class="feature-title">Fits #30 & #60 Extrol Tanks</div><p class="feature-desc">Designed specifically for the tanks HVAC techs handle most — #30 and #60 Extrol expansion tanks in residential and commercial systems.</p></div>
+      <div class="feature-card"><div class="feature-icon">🏆</div><div class="feature-title">Invented by a Tech, for Techs</div><p class="feature-desc">40 years in the trade. Peter Forcier built this because he lived the problem — and your whole crew will be saying <em>"That was Easy."</em></p></div>
+      <div class="feature-card"><div class="feature-icon">📞</div><div class="feature-title">Real Local Support</div><p class="feature-desc">Easy Way LLC is based in Marlborough, NH. Call (603) 762-1850 — a real person will pick up.</p></div>
     </div>
   </section>
 
-  <!-- HOW IT WORKS -->
-  <section id="how" style="background:var(--paper)">
-    <div class="section-label">The Process</div>
-    <h2 class="section-title">How It Works</h2>
-    <div class="steps">
-      <div class="step"><div class="step-dot">1</div><div class="step-title">Place Your Order</div><p class="step-desc">Shop online or call us directly. We'll make sure you get exactly what you need.</p></div>
-      <div class="step"><div class="step-dot">2</div><div class="step-title">Fast Shipping</div><p class="step-desc">Your Catcher+ ships quickly and arrives ready to install — no assembly required.</p></div>
-      <div class="step"><div class="step-dot">3</div><div class="step-title">Simple Install</div><p class="step-desc">Follow the included guide or call us. Most installs take under 30 minutes.</p></div>
-      <div class="step"><div class="step-dot">4</div><div class="step-title">Easier Maintenance</div><p class="step-desc">Enjoy a heating system that's simpler to maintain, season after season.</p></div>
-    </div>
-  </section>
-
-  <!-- TESTIMONIALS -->
-  <section id="testimonials">
-    <div class="section-label">Customer Reviews</div>
-    <h2 class="section-title">Trusted in the Field</h2>
-    <div class="testimonials-grid">
-      <div class="testimonial"><div class="testimonial-stars">★★★★★</div><p class="testimonial-text">"Saved me a ton of time on my last three service calls. Installation is a breeze and it fits perfectly with my Extrol setup."</p><div class="testimonial-author">Mike R.</div><div class="testimonial-role">HVAC Technician — 18 yrs</div></div>
-      <div class="testimonial"><div class="testimonial-stars">★★★★★</div><p class="testimonial-text">"I was skeptical at first but the folks at Easy Way walked me through everything. Product arrived fast and works exactly as advertised."</p><div class="testimonial-author">Sandra T.</div><div class="testimonial-role">Homeowner</div></div>
-      <div class="testimonial"><div class="testimonial-stars">★★★★★</div><p class="testimonial-text">"Solid construction, easy to use, great customer service. Exactly what my shop needed. Will be ordering more for the whole team."</p><div class="testimonial-author">Dave K.</div><div class="testimonial-role">Heating Contractor</div></div>
-    </div>
-  </section>
 
   <!-- CONTACT -->
   <section id="contact-section" style="background:var(--navy);padding:90px 5vw">
@@ -972,20 +1043,23 @@
         <div class="contact-item"><div class="contact-icon">✉️</div><div><div class="contact-item-label">Email</div><div class="contact-item-val"><a href="mailto:easyway30@gmail.com">easyway30@gmail.com</a></div></div></div>
         <div class="contact-item"><div class="contact-icon">📍</div><div><div class="contact-item-label">Address</div><div class="contact-item-val">136 Main St PO Box 47<br>Marlborough, NH 03455</div></div></div>
       </div>
-      <div class="contact-form">
+      <form class="contact-form" id="contact-form">
         <div class="form-row">
-          <div class="form-field"><label>First Name</label><input type="text" placeholder="John"/></div>
-          <div class="form-field"><label>Last Name</label><input type="text" placeholder="Smith"/></div>
+          <div class="form-field"><label>First Name</label><input type="text" name="first_name" placeholder="John" required/></div>
+          <div class="form-field"><label>Last Name</label><input type="text" name="last_name" placeholder="Smith"/></div>
         </div>
-        <div class="form-field"><label>Email</label><input type="email" placeholder="john@example.com"/></div>
-        <div class="form-field"><label>Phone</label><input type="tel" placeholder="(555) 000-0000"/></div>
+        <div class="form-field"><label>Email</label><input type="email" name="email" placeholder="john@example.com" required/></div>
+        <div class="form-field"><label>Phone</label><input type="tel" name="phone" placeholder="(555) 000-0000"/></div>
         <div class="form-field">
           <label>I am a...</label>
-          <select><option value="">Select one</option><option>Homeowner</option><option>HVAC Technician</option><option>Heating Contractor</option><option>Other</option></select>
+          <select name="customer_type"><option value="">Select one</option><option>Homeowner</option><option>HVAC Technician</option><option>Heating Contractor</option><option>Other</option></select>
         </div>
-        <div class="form-field"><label>Message</label><textarea placeholder="Tell us about your heating setup or what you need…"></textarea></div>
-        <button class="form-submit" >Send Message →</button>
-      </div>
+        <div class="form-field"><label>Message</label><textarea name="message" placeholder="Tell us about your heating setup or what you need…"></textarea></div>
+        <button type="submit" class="form-submit">Send Message →</button>
+        <div id="form-success" style="display:none; background:rgba(42,100,150,0.1); border:1px solid var(--accent); border-radius:4px; padding:1rem 1.25rem; color:var(--accent); font-weight:500; margin-top:0.5rem;">
+          ✅ Message sent! We'll get back to you shortly.
+        </div>
+      </form>
     </div>
   </section>
 </div>
@@ -1021,29 +1095,56 @@
       <div>
         <div class="section-label">The Product</div>
         <h2 class="section-title">What Is the<br>#30 Catcher+?</h2>
-        <p class="about-body">After many years in the industry, Peter wanted to make managing #30 and #60 Extrol tanks safer and simpler. When completely filled, these tanks can weigh up to 60 lbs — making them difficult to handle and prone to creating hazardous, costly messes.</p>
-        <p class="about-body">The #30 Catcher+ is a heavy-duty catching bag made from rip-resistant polyester fiber and industrial-grade mesh, with reinforced steel grappling hooks that lock securely onto the tank. Multi-use and built to last — your whole team will be saying <em>"That was Easy."</em></p>
+        <p class="about-body">Filled #30 and #60 Extrol tanks can weigh up to 60 lbs. The #30 Catcher+ is built to handle that weight — day in, day out. The bag is constructed from highly rip-resistant polyester fiber and industrial-grade mesh that won't give out on the job.</p>
+        <p class="about-body">The steel clips are reinforced and engineered to lock onto the supply pipe with a secure grip. The nylon structure keeps the bag positioned correctly every time. It's a multi-use tool — large enough to hold a five gallon bucket, making it equally handy for catching plumbing leaks or carrying tools on the job.</p>
         <a class="btn btn-outline" data-page="shop" style="cursor:pointer;margin-top:0.5rem">Order Now — $140.00</a>
       </div>
-      <div class="product-img-duo">
-        <img src="https://static.wixstatic.com/media/7eba66_d3964341206e4963a856bac28957d034~mv2.jpg" alt="Catcher+ detail"/>
-        <img src="https://static.wixstatic.com/media/7eba66_e323a9d7f31f4887a8dc42561b667ed4~mv2.jpg" alt="Catcher+ in use"/>
-        <img src="https://static.wixstatic.com/media/7eba66_a022e29e231e4215a4890c772896934a~mv2.jpg" alt="Catcher+ close up"/>
+      <div class="about-carousel">
+        <div class="carousel-track" id="about-carousel-track">
+          <img src="https://static.wixstatic.com/media/7eba66_d3964341206e4963a856bac28957d034~mv2.jpg" alt="Catcher+ detail"/>
+          <img src="https://static.wixstatic.com/media/7eba66_e323a9d7f31f4887a8dc42561b667ed4~mv2.jpg" alt="Catcher+ in use"/>
+          <img src="https://static.wixstatic.com/media/7eba66_a022e29e231e4215a4890c772896934a~mv2.jpg" alt="Catcher+ close up"/>
+          <img src="https://static.wixstatic.com/media/7eba66_27dd8c33a1fb488095357bc623974f6f~mv2.jpg" alt="Catcher+ with Extrol Tank"/>
+        </div>
+        <div class="carousel-controls">
+          <button class="carousel-btn" id="carousel-prev">&#8592;</button>
+          <div class="carousel-dots" id="carousel-dots"></div>
+          <button class="carousel-btn" id="carousel-next">&#8594;</button>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- CLIENTS -->
-  <section style="background:var(--paper)">
+  <section class="clients-section">
     <div class="section-label">Trusted By</div>
     <h2 class="section-title">HVAC Companies Who've<br>Already Used or Inquired</h2>
-    <div style="display:flex;flex-wrap:wrap;gap:2rem;align-items:center;justify-content:center;margin-top:2.5rem;padding:2rem;background:var(--fog);border-radius:6px">
-      <img src="https://static.wixstatic.com/media/7eba66_30b1c8d7999d46adb991675ef3ac2f0e~mv2.png" alt="Client" style="height:56px;object-fit:contain;filter:grayscale(0.3)"/>
-      <img src="https://static.wixstatic.com/media/7eba66_a509a6cabb4b48cb98d4a96c051acaf2~mv2.jpg" alt="Client" style="height:56px;object-fit:contain;filter:grayscale(0.3)"/>
-      <img src="https://static.wixstatic.com/media/7eba66_60809830edc14149ac315490f92baf93~mv2.webp" alt="Client" style="height:56px;object-fit:contain;filter:grayscale(0.3)"/>
-      <img src="https://static.wixstatic.com/media/7eba66_1e0b8615591c412597d7293ba4e5c88e~mv2.png" alt="Client" style="height:56px;object-fit:contain;filter:grayscale(0.3)"/>
-      <img src="https://static.wixstatic.com/media/7eba66_81c6a85980694c9a9f90e2fab7f1df09~mv2.avif" alt="Client" style="height:56px;object-fit:contain;filter:grayscale(0.3)"/>
-      <img src="https://static.wixstatic.com/media/7eba66_fadca351d5e54482b7318883df0c7e17~mv2.png" alt="Client" style="height:56px;object-fit:contain;filter:grayscale(0.3)"/>
+    <!-- Desktop: full-width row -->
+    <div class="clients-row">
+      <img src="https://static.wixstatic.com/media/7eba66_30b1c8d7999d46adb991675ef3ac2f0e~mv2.png" alt="Dead River Company"/>
+      <img src="https://static.wixstatic.com/media/7eba66_a509a6cabb4b48cb98d4a96c051acaf2~mv2.jpg" alt="Swanzey Oil"/>
+      <img src="https://static.wixstatic.com/media/7eba66_60809830edc14149ac315490f92baf93~mv2.webp" alt="Davis Oil and Propane"/>
+      <img src="https://static.wixstatic.com/media/7eba66_1e0b8615591c412597d7293ba4e5c88e~mv2.png" alt="Pinney Plumbing and Heating"/>
+      <img src="https://static.wixstatic.com/media/7eba66_81c6a85980694c9a9f90e2fab7f1df09~mv2.avif" alt="EW Webb Company"/>
+      <img src="https://static.wixstatic.com/media/7eba66_fadca351d5e54482b7318883df0c7e17~mv2.png" alt="Cota and Cota"/>
+    </div>
+    <!-- Mobile: auto-scrolling ticker -->
+    <div class="clients-ticker">
+      <div class="clients-ticker-inner">
+        <img src="https://static.wixstatic.com/media/7eba66_30b1c8d7999d46adb991675ef3ac2f0e~mv2.png" alt="Dead River Company"/>
+        <img src="https://static.wixstatic.com/media/7eba66_a509a6cabb4b48cb98d4a96c051acaf2~mv2.jpg" alt="Swanzey Oil"/>
+        <img src="https://static.wixstatic.com/media/7eba66_60809830edc14149ac315490f92baf93~mv2.webp" alt="Davis Oil and Propane"/>
+        <img src="https://static.wixstatic.com/media/7eba66_1e0b8615591c412597d7293ba4e5c88e~mv2.png" alt="Pinney Plumbing and Heating"/>
+        <img src="https://static.wixstatic.com/media/7eba66_81c6a85980694c9a9f90e2fab7f1df09~mv2.avif" alt="EW Webb Company"/>
+        <img src="https://static.wixstatic.com/media/7eba66_fadca351d5e54482b7318883df0c7e17~mv2.png" alt="Cota and Cota"/>
+        <!-- Duplicate set for seamless loop -->
+        <img src="https://static.wixstatic.com/media/7eba66_30b1c8d7999d46adb991675ef3ac2f0e~mv2.png" alt="Dead River Company"/>
+        <img src="https://static.wixstatic.com/media/7eba66_a509a6cabb4b48cb98d4a96c051acaf2~mv2.jpg" alt="Swanzey Oil"/>
+        <img src="https://static.wixstatic.com/media/7eba66_60809830edc14149ac315490f92baf93~mv2.webp" alt="Davis Oil and Propane"/>
+        <img src="https://static.wixstatic.com/media/7eba66_1e0b8615591c412597d7293ba4e5c88e~mv2.png" alt="Pinney Plumbing and Heating"/>
+        <img src="https://static.wixstatic.com/media/7eba66_81c6a85980694c9a9f90e2fab7f1df09~mv2.avif" alt="EW Webb Company"/>
+        <img src="https://static.wixstatic.com/media/7eba66_fadca351d5e54482b7318883df0c7e17~mv2.png" alt="Cota and Cota"/>
+      </div>
     </div>
   </section>
 
@@ -1054,7 +1155,7 @@
     <div class="values-grid">
       <div class="value-card"><div class="value-title">Simplicity First</div><p class="value-desc">Every decision is in service of making the job easier. No unnecessary complexity, ever.</p></div>
       <div class="value-card"><div class="value-title">Built to Last</div><p class="value-desc">Rip-resistant polyester mesh, heavy-duty nylon, and reinforced steel grappling hooks — a catching bag built for the field, not a showroom shelf.</p></div>
-      <div class="value-card"><div class="value-title">Real Support</div><p class="value-desc">Call (603) 762-1850 or email <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="befbdfcdc7c9dfc78d8efed9d3dfd7d290ddd1d3">[email&#160;protected]</a>. We're real people and we'll answer.</p></div>
+      <div class="value-card"><div class="value-title">Real Support</div><p class="value-desc">Call (603) 762-1850 or email <a href="mailto:easyway30@gmail.com">easyway30@gmail.com</a>. We're real people and we'll answer.</p></div>
       <div class="value-card"><div class="value-title">Patented Innovation</div><p class="value-desc">The #30 Catcher+ is a patented product — 40 years of hands-on experience distilled into one tool.</p></div>
     </div>
   </section>
@@ -1081,43 +1182,34 @@
           <div class="product-thumb-row">
             <img class="product-thumb active" data-src="https://static.wixstatic.com/media/7eba66_0e9cd757437b40fa938c0522a5edee7c~mv2.jpg"
               src="https://static.wixstatic.com/media/7eba66_0e9cd757437b40fa938c0522a5edee7c~mv2.jpg" alt="View 1"/>
-            <img class="product-thumb" data-src="https://static.wixstatic.com/media/7eba66_27dd8c33a1fb488095357bc623974f6f~mv2.jpg"
-              src="https://static.wixstatic.com/media/7eba66_27dd8c33a1fb488095357bc623974f6f~mv2.jpg" alt="View 2"/>
             <img class="product-thumb" data-src="https://static.wixstatic.com/media/7eba66_d3964341206e4963a856bac28957d034~mv2.jpg"
-              src="https://static.wixstatic.com/media/7eba66_d3964341206e4963a856bac28957d034~mv2.jpg" alt="View 3"/>
+              src="https://static.wixstatic.com/media/7eba66_d3964341206e4963a856bac28957d034~mv2.jpg" alt="View 2"/>
             <img class="product-thumb" data-src="https://static.wixstatic.com/media/7eba66_e323a9d7f31f4887a8dc42561b667ed4~mv2.jpg"
-              src="https://static.wixstatic.com/media/7eba66_e323a9d7f31f4887a8dc42561b667ed4~mv2.jpg" alt="View 4"/>
+              src="https://static.wixstatic.com/media/7eba66_e323a9d7f31f4887a8dc42561b667ed4~mv2.jpg" alt="View 3"/>
           </div>
         </div>
 
         <!-- Info -->
         <div class="product-info">
           <div class="product-name">EasyWay #30 Catcher+</div>
-          <div class="product-sku">SKU: EZW-30C-PLUS</div>
-          <div class="product-stars">★★★★★</div>
-          <div class="product-review-count">4.9 out of 5 — 47 reviews</div>
           <div class="product-price-block">
             <div class="product-price">$140<span style="font-size:1.2rem">.00</span> <span style="text-decoration:line-through;font-size:1rem;color:var(--mid);font-family:DM Sans,sans-serif;font-weight:400">$150.00</span></div>
-            <div class="product-price-note">Save $10 on your order · Free shipping on orders over $75</div>
+
           </div>
           <div class="product-divider"></div>
           <p class="product-desc-short">
-            The #30 Catcher+ is a patented, field-tested tool built from heavy-duty gray mesh and black nylon. Rip-resistant and multi-use, it's designed to prevent the hazardous — and costly — accidents that happen when handling heavy Extrol tanks. Use it for heating maintenance or as a heavy-duty equipment carrier.
+            A patented, field-tested tool built from rip-resistant polyester mesh, heavy-duty nylon, and reinforced steel clips. Designed for HVAC professionals who handle #30 and #60 Extrol tanks daily. Multi-use, durable, and built to last through years of real field work.
           </p>
-          <div class="qty-row">
-            <span class="qty-label">Qty</span>
-            <div class="qty-ctrl">
-              <button class="qty-btn" >−</button>
-              <input class="qty-val" id="qty-input" type="number" value="1" min="1" max="99" readonly/>
-              <button class="qty-btn" >+</button>
-            </div>
+
+          <div style="background:var(--fog);border:1.5px solid var(--pale);border-radius:5px;padding:1.25rem 1.5rem;margin-bottom:1rem">
+            <div style="font-size:0.72rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent);margin-bottom:0.4rem">Ready to Order?</div>
+            <p style="font-size:0.95rem;color:var(--steel);margin-bottom:1rem">Online checkout coming soon. In the meantime, call or email us directly — we'll get you taken care of.</p>
+            <a href="tel:6037621850" class="btn btn-primary" style="display:block;text-align:center;margin-bottom:0.6rem">📞 Call (603) 762-1850</a>
+            <a href="mailto:easyway30@gmail.com" class="btn btn-outline" style="display:block;text-align:center">✉️ easyway30@gmail.com</a>
           </div>
-          <button class="add-to-cart-btn" >Add to Cart</button>
-          <button class="btn btn-outline" style="width:100%" data-toast="Checkout coming soon!">Buy Now</button>
           <div class="trust-badges">
             <div class="badge"><span class="badge-icon">🔒</span> Secure Checkout</div>
-            <div class="badge"><span class="badge-icon">🚚</span> Fast Shipping</div>
-            <div class="badge"><span class="badge-icon">↩️</span> Easy Returns</div>
+
             <div class="badge"><span class="badge-icon">📞</span> US-Based Support</div>
           </div>
         </div>
@@ -1128,16 +1220,16 @@
         <div class="tab-nav">
           <button class="tab-btn active" data-tab="tab-desc">Description</button>
           <button class="tab-btn" data-tab="tab-specs">Specifications</button>
-          <button class="tab-btn" data-tab="tab-reviews">Reviews (47)</button>
         </div>
         <div class="tab-panel active" id="tab-desc">
-          <p>Invented and patented by Peter Forcier of Marlborough, NH — a heating tech with over 40 years in the trade — the #30 Catcher+ was born out of real frustration with a real problem. Filled #30 and #60 Extrol tanks can weigh up to 60 lbs, and mishandling them means spills, injuries, and expensive cleanups. The Catcher+ puts a stop to all of that.</p>
+          <p>Invented and patented by Peter Forcier of Marlborough, NH — a heating tech with over 40 years in the trade. The #30 Catcher+ is the product of decades of firsthand experience with a problem the industry had simply accepted as part of the job.</p>
+          <p style="margin-top:1rem">Built from industrial-grade rip-resistant polyester fiber mesh and heavy-duty structured nylon, with reinforced steel clips engineered to hold securely under the weight of a full tank. This is not a light-duty tool — it's made for techs who use it every day.</p>
           <p style="margin-top:1rem">Featuring:</p>
           <ul>
             <li>Highly rip-resistant polyester fiber industrial-grade material, top to bottom</li>
             <li>Reinforced steel grappling hooks and heavy-duty attachment points for a secure, confident grip</li>
             <li>Compatible with #30 and #60 Extrol expansion tanks</li>
-            <li>Multi-use: heating maintenance tool or heavy-duty tool carrier for carpentry jobs</li>
+            <li>Multi-use: fits a five gallon bucket — ideal for catching plumbing leaks or carrying tools on the job</li>
             <li>Designed for full-time use by heating industry professionals</li>
           </ul>
           <p style="margin-top:1rem">Gray mesh with black nylon structured material. Your whole team will be saying <em>"That was Easy."</em></p>
@@ -1154,21 +1246,15 @@
             <tr><td>Regular Price</td><td>$150.00</td></tr>
             <tr><td>Sale Price</td><td>$140.00 (save $10 off regular price)</td></tr>
             <tr><td>Ships From</td><td>Marlborough, NH, United States</td></tr>
-            <tr><td>Contact</td><td>(603) 762-1850 · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="fcb99d8f858b9d85cfccbc9b919d9590d29f9391">[email&#160;protected]</a></td></tr>
+            <tr><td>Contact</td><td>(603) 762-1850 · <a href="mailto:easyway30@gmail.com">easyway30@gmail.com</a></td></tr>
           </table>
         </div>
-        <div class="tab-panel" id="tab-reviews">
-          <div style="display:flex;flex-direction:column;gap:1.5rem">
-            <div><div style="display:flex;gap:0.5rem;align-items:center;margin-bottom:0.4rem"><span style="color:var(--gold)">★★★★★</span><strong style="font-size:0.9rem">Mike R.</strong><span style="font-size:0.78rem;color:var(--mid)">— Verified Purchase</span></div><p style="font-size:0.92rem;color:var(--steel)">"Saved me hours on service calls. Easy install, works great with my Extrol tank. Highly recommend."</p></div>
-            <div><div style="display:flex;gap:0.5rem;align-items:center;margin-bottom:0.4rem"><span style="color:var(--gold)">★★★★★</span><strong style="font-size:0.9rem">Sandra T.</strong><span style="font-size:0.78rem;color:var(--mid)">— Verified Purchase</span></div><p style="font-size:0.92rem;color:var(--steel)">"Easy Way's support team was incredibly helpful. Product works exactly as described."</p></div>
-            <div><div style="display:flex;gap:0.5rem;align-items:center;margin-bottom:0.4rem"><span style="color:var(--gold)">★★★★★</span><strong style="font-size:0.9rem">Dave K.</strong><span style="font-size:0.78rem;color:var(--mid)">— Verified Purchase</span></div><p style="font-size:0.92rem;color:var(--steel)">"Ordered three for my crew. Solid build, fair price, fast shipping. Will be back."</p></div>
-          </div>
-        </div>
+
       </div>
     </div>
 
-    <!-- Cart Sidebar -->
-    <div class="cart-sidebar">
+    <!-- Cart Sidebar (hidden until Shopify is ready) -->
+    <div class="cart-sidebar" style="display:none">
       <div class="cart-header">
         <div class="cart-title">Your Cart</div>
         <div class="cart-count-label" id="cart-count-label">0 items</div>
@@ -1177,8 +1263,7 @@
         <div class="cart-empty" id="cart-empty">Your cart is empty.</div>
       </div>
       <div class="cart-footer">
-        <div class="cart-row"><span>Subtotal</span><span id="cart-subtotal">$0.00</span></div>
-        <div class="cart-row"><span>Shipping</span><span id="cart-shipping">—</span></div>
+    </span><span id="cart-shipping">—</span></div>
         <div class="cart-total-row"><span>Total</span><span id="cart-total">$0.00</span></div>
         <button class="checkout-btn" data-toast="Secure checkout coming soon!">Proceed to Checkout →</button>
         <div class="cart-note">🔒 Secure & encrypted checkout</div>
@@ -1187,13 +1272,22 @@
   </div>
 </div>
 
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightbox-close">&#x2715;</button>
+  <button class="lightbox-prev" id="lightbox-prev">&#8592;</button>
+  <img class="lightbox-img" id="lightbox-img" src="" alt=""/>
+  <button class="lightbox-next" id="lightbox-next">&#8594;</button>
+  <div class="lightbox-counter" id="lightbox-counter"></div>
+</div>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">
     Easy Way LLC
     <span>© 2025 Easy Way LLC · Marlborough, NH 03455</span>
   </div>
-  <div class="footer-copy">(603) 762-1850 · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0e4b6f7d77796f773d3e4e69636f6762206d6163">[email&#160;protected]</a></div>
+  <div class="footer-copy">(603) 762-1850 · <a href="mailto:easyway30@gmail.com">easyway30@gmail.com</a></div>
   <div class="footer-links">
     <a href="#" data-page="home">Home</a>
     <a href="#" data-page="about">About</a>
@@ -1202,7 +1296,7 @@
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 document.addEventListener('DOMContentLoaded', function() {
 
   // ── MOBILE MENU ──
@@ -1258,7 +1352,7 @@ document.addEventListener('DOMContentLoaded', function() {
   var PRICE = 89.99;
 
   function addToCart() {
-    var qty = parseInt(document.getElementById('qty-input').value) || 1;
+    var qty = 1;
     var existing = cart.find(function(i) { return i.id === 'EZW-30C'; });
     if (existing) {
       existing.qty += qty;
@@ -1266,7 +1360,7 @@ document.addEventListener('DOMContentLoaded', function() {
       cart.push({ id: 'EZW-30C', name: 'EasyWay #30 Catcher+', price: PRICE, qty: qty });
     }
     renderCart();
-    showToast('Added ' + qty + ' item' + (qty > 1 ? 's' : '') + ' to cart!');
+    showToast('Added to cart!');
   }
 
   function removeFromCart(id) {
@@ -1283,7 +1377,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     var totalQty = cart.reduce(function(s,i){ return s+i.qty; }, 0);
     var subtotal  = cart.reduce(function(s,i){ return s+i.qty*i.price; }, 0);
-    var shipping  = subtotal === 0 ? 0 : subtotal >= 75 ? 0 : 9.99;
+    var shipping  = 0;
     var total     = subtotal + shipping;
 
     badge.textContent = totalQty;
@@ -1311,22 +1405,11 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     document.getElementById('cart-subtotal').textContent = '$' + subtotal.toFixed(2);
-    document.getElementById('cart-shipping').textContent = shipping === 0 && subtotal > 0 ? 'FREE' : shipping === 0 ? '—' : '$' + shipping.toFixed(2);
+    document.getElementById('cart-shipping').textContent = subtotal > 0 ? 'Calculated at checkout' : '—';
     document.getElementById('cart-total').textContent = '$' + total.toFixed(2);
   }
 
-  // ── QTY CONTROLS ──
-  function adjustQty(delta) {
-    var input = document.getElementById('qty-input');
-    var val = parseInt(input.value) + delta;
-    if (val < 1) val = 1;
-    if (val > 99) val = 99;
-    input.value = val;
-  }
-  var qtyMinus = document.querySelector('.qty-btn:first-child');
-  var qtyPlus  = document.querySelector('.qty-btn:last-child');
-  if (qtyMinus) qtyMinus.addEventListener('click', function() { adjustQty(-1); });
-  if (qtyPlus)  qtyPlus.addEventListener('click',  function() { adjustQty(1);  });
+
 
   // ── ADD TO CART ──
   var addBtn = document.querySelector('.add-to-cart-btn');
@@ -1367,6 +1450,133 @@ document.addEventListener('DOMContentLoaded', function() {
   document.querySelectorAll('[data-toast]').forEach(function(btn) {
     btn.addEventListener('click', function() { showToast(btn.getAttribute('data-toast')); });
   });
+
+  // ── CONTACT FORM ──
+  var contactForm = document.getElementById('contact-form');
+  if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var btn = contactForm.querySelector('.form-submit');
+      btn.textContent = 'Sending…';
+      btn.disabled = true;
+      fetch('https://formspree.io/f/xbdzepro', {
+        method: 'POST',
+        body: new FormData(contactForm),
+        headers: { 'Accept': 'application/json' }
+      }).then(function(response) {
+        if (response.ok) {
+          contactForm.reset();
+          document.getElementById('form-success').style.display = 'block';
+          btn.style.display = 'none';
+        } else {
+          btn.textContent = 'Error — please try again';
+          btn.disabled = false;
+        }
+      }).catch(function() {
+        btn.textContent = 'Error — please try again';
+        btn.disabled = false;
+      });
+    });
+  }
+
+  // ── ABOUT PAGE CAROUSEL + LIGHTBOX ──
+  var carouselTrack = document.getElementById('about-carousel-track');
+  if (carouselTrack) {
+    var carouselImgs = carouselTrack.querySelectorAll('img');
+    var totalSlides = carouselImgs.length;
+    var currentSlide = 0;
+    var autoplayTimer;
+
+    // Collect image srcs for lightbox
+    var imgSrcs = Array.from(carouselImgs).map(function(img) { return img.src; });
+    var imgAlts = Array.from(carouselImgs).map(function(img) { return img.alt; });
+
+    // Build dots
+    var dotsContainer = document.getElementById('carousel-dots');
+    carouselImgs.forEach(function(_, i) {
+      var dot = document.createElement('button');
+      dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+      dot.setAttribute('aria-label', 'Slide ' + (i + 1));
+      dot.addEventListener('click', function() { goToSlide(i); });
+      dotsContainer.appendChild(dot);
+    });
+
+    function goToSlide(n) {
+      currentSlide = (n + totalSlides) % totalSlides;
+      carouselTrack.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
+      dotsContainer.querySelectorAll('.carousel-dot').forEach(function(d, i) {
+        d.classList.toggle('active', i === currentSlide);
+      });
+    }
+
+    function startAutoplay() {
+      autoplayTimer = setInterval(function() { goToSlide(currentSlide + 1); }, 3500);
+    }
+
+    function resetAutoplay() {
+      clearInterval(autoplayTimer);
+      startAutoplay();
+    }
+
+    document.getElementById('carousel-prev').addEventListener('click', function() {
+      goToSlide(currentSlide - 1); resetAutoplay();
+    });
+    document.getElementById('carousel-next').addEventListener('click', function() {
+      goToSlide(currentSlide + 1); resetAutoplay();
+    });
+
+    startAutoplay();
+
+    // ── LIGHTBOX ──
+    var lightbox = document.getElementById('lightbox');
+    var lightboxImg = document.getElementById('lightbox-img');
+    var lightboxCounter = document.getElementById('lightbox-counter');
+    var lightboxIndex = 0;
+
+    function openLightbox(index) {
+      lightboxIndex = (index + totalSlides) % totalSlides;
+      lightboxImg.src = imgSrcs[lightboxIndex];
+      lightboxImg.alt = imgAlts[lightboxIndex];
+      lightboxCounter.textContent = (lightboxIndex + 1) + ' / ' + totalSlides;
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      clearInterval(autoplayTimer);
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+      startAutoplay();
+    }
+
+    function lightboxNav(dir) {
+      lightboxIndex = (lightboxIndex + dir + totalSlides) % totalSlides;
+      lightboxImg.src = imgSrcs[lightboxIndex];
+      lightboxImg.alt = imgAlts[lightboxIndex];
+      lightboxCounter.textContent = (lightboxIndex + 1) + ' / ' + totalSlides;
+    }
+
+    carouselImgs.forEach(function(img, i) {
+      img.addEventListener('click', function() { openLightbox(i); });
+    });
+
+    document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+    document.getElementById('lightbox-prev').addEventListener('click', function() { lightboxNav(-1); });
+    document.getElementById('lightbox-next').addEventListener('click', function() { lightboxNav(1); });
+
+    // Close on backdrop click
+    lightbox.addEventListener('click', function(e) {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', function(e) {
+      if (!lightbox.classList.contains('open')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') lightboxNav(-1);
+      if (e.key === 'ArrowRight') lightboxNav(1);
+    });
+  }
 
 });
 </script>
