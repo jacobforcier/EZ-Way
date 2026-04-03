@@ -6,7 +6,62 @@
   <title>EasyWay #30 Catcher+ | Easy Way LLC — Marlborough, NH</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiByeD0iNiIgZmlsbD0iIzFiMmIzYSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBkb21pbmFudC1iYXNlbGluZT0iY2VudHJhbCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9Ikdlb3JnaWEsc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGZvbnQtd2VpZ2h0PSI3MDAiIGxldHRlci1zcGFjaW5nPSIwLjUiIGZpbGw9IiNjOGQ4ZTQiPkVXPC90ZXh0Pjwvc3ZnPg=="/>
   <meta name="description" content="The EasyWay #30 Catcher+ is a patented tool for HVAC technicians handling Extrol tanks. Heavy-duty steel clips, rip-resistant mesh, built by a 40-year trade veteran. Order from Easy Way LLC in Marlborough, NH."/>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="product"/>
+  <meta property="og:title" content="EasyWay #30 Catcher+ | Easy Way LLC"/>
+  <meta property="og:description" content="A heavy-duty catching bag that lets one HVAC tech safely remove a full Extrol expansion tank — no spills, no second pair of hands. Patented, field-tested, built in NH."/>
+  <meta property="og:image" content="https://static.wixstatic.com/media/7eba66_0e9cd757437b40fa938c0522a5edee7c~mv2.jpg"/>
+  <meta property="og:url" content="https://www.easyway30.com"/>
+  <meta property="og:site_name" content="Easy Way LLC"/>
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="EasyWay #30 Catcher+ | Easy Way LLC"/>
+  <meta name="twitter:description" content="A heavy-duty catching bag that lets one HVAC tech safely remove a full Extrol expansion tank — no spills, no second pair of hands."/>
+  <meta name="twitter:image" content="https://static.wixstatic.com/media/7eba66_0e9cd757437b40fa938c0522a5edee7c~mv2.jpg"/>
+
+  <link rel="canonical" href="https://www.easyway30.com"/>
+
+  <!-- Font preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+
+  <!-- Product structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "EasyWay #30 Catcher+",
+    "description": "A heavy-duty catching bag that lets one HVAC technician safely remove a full #30 or #60 Extrol expansion tank. Built from rip-resistant polyester mesh, heavy-duty nylon, and reinforced steel clips.",
+    "image": "https://static.wixstatic.com/media/7eba66_0e9cd757437b40fa938c0522a5edee7c~mv2.jpg",
+    "brand": {
+      "@type": "Brand",
+      "name": "Easy Way LLC"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "140.00",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock",
+      "url": "https://www.easyway30.com",
+      "seller": {
+        "@type": "Organization",
+        "name": "Easy Way LLC",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "136 Main St PO Box 47",
+          "addressLocality": "Marlborough",
+          "addressRegion": "NH",
+          "postalCode": "03455",
+          "addressCountry": "US"
+        },
+        "telephone": "(603) 762-1850"
+      }
+    }
+  }
+  </script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -24,6 +79,7 @@
       --gold:    #b07d2e;
       --shadow:  rgba(27,43,58,0.10);
       --shadow2: rgba(27,43,58,0.18);
+      --radius:  6px;
     }
 
     html { scroll-behavior: smooth; }
@@ -72,28 +128,6 @@
     .nav-links a:hover, .nav-links a.active { color: var(--accent); }
 
     .nav-actions { display: flex; align-items: center; gap: 1rem; }
-
-    .cart-btn {
-      position: relative;
-      background: none; border: none; cursor: pointer;
-      padding: 0.4rem 0.6rem;
-      color: var(--navy);
-      font-size: 1.25rem;
-      transition: color 0.2s;
-    }
-    .cart-btn:hover { color: var(--accent); }
-
-    .cart-badge {
-      position: absolute; top: -2px; right: -2px;
-      background: var(--accent); color: #fff;
-      font-size: 0.65rem; font-weight: 600;
-      width: 18px; height: 18px;
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      opacity: 0; transform: scale(0.5);
-      transition: all 0.25s;
-    }
-    .cart-badge.show { opacity: 1; transform: scale(1); }
 
     .btn {
       display: inline-block;
@@ -449,17 +483,6 @@
     .feature-desc { font-size: 0.9rem; color: var(--steel); line-height: 1.7; }
 
     /* ══════════════════════════════════════
-       HOME — HOW IT WORKS
-    ══════════════════════════════════════ */
-    #how { background: var(--paper); }
-
-
-    /* ══════════════════════════════════════
-       HOME — TESTIMONIALS
-    ══════════════════════════════════════ */
-
-
-    /* ══════════════════════════════════════
        ABOUT — CLIENTS / LOGOS
     ══════════════════════════════════════ */
     .clients-section { background: var(--paper); }
@@ -595,11 +618,9 @@
     #shop-page { background: var(--white); }
 
     .shop-layout {
-      display: grid;
-      grid-template-columns: 1fr 340px;
-      gap: 3rem;
+      max-width: 960px;
+      margin: 0 auto;
       padding: 60px 5vw 90px;
-      align-items: start;
     }
 
     /* Product detail */
@@ -630,7 +651,6 @@
     }
     .product-thumb:hover, .product-thumb.active { border-color: var(--accent); }
 
-    .product-info {}
     .product-name {
       font-family: 'DM Serif Display', serif;
       font-size: 2rem; color: var(--navy);
@@ -648,17 +668,6 @@
     .product-desc-short { color: var(--steel); line-height: 1.8; margin-bottom: 1.5rem; font-size: 0.97rem; }
 
 
-
-    .add-to-cart-btn {
-      width: 100%; padding: 1rem;
-      background: var(--accent); color: #fff;
-      font-family: 'DM Sans', sans-serif; font-weight: 600;
-      font-size: 1rem; letter-spacing: 0.06em;
-      border: none; border-radius: 3px;
-      cursor: pointer; transition: background 0.2s;
-      margin-bottom: 0.75rem;
-    }
-    .add-to-cart-btn:hover { background: var(--accent2); }
 
     .trust-badges {
       display: flex; gap: 1rem; flex-wrap: wrap;
@@ -692,68 +701,6 @@
     .tab-panel table { width: 100%; border-collapse: collapse; margin-top: 0.75rem; }
     .tab-panel td { padding: 0.6rem 1rem; border-bottom: 1px solid var(--pale); font-size: 0.9rem; }
     .tab-panel td:first-child { font-weight: 600; color: var(--navy); width: 40%; }
-
-    /* Cart sidebar */
-    .cart-sidebar {
-      background: var(--paper);
-      border-radius: 6px;
-      box-shadow: 0 4px 24px var(--shadow2);
-      border: 1px solid var(--pale);
-      position: sticky; top: 88px;
-      overflow: hidden;
-    }
-    .cart-header {
-      background: var(--navy);
-      color: #fff;
-      padding: 1.1rem 1.5rem;
-      display: flex; align-items: center; justify-content: space-between;
-    }
-    .cart-title { font-family: 'DM Serif Display', serif; font-size: 1.1rem; }
-    .cart-count-label { font-size: 0.78rem; color: var(--pale); }
-    .cart-items { padding: 1rem 1.5rem; min-height: 80px; }
-    .cart-empty { color: var(--mid); font-size: 0.88rem; text-align: center; padding: 1.5rem 0; }
-    .cart-item {
-      display: flex; align-items: center; gap: 0.75rem;
-      padding: 0.75rem 0;
-      border-bottom: 1px solid var(--fog);
-      animation: slideIn 0.25s ease;
-    }
-    @keyframes slideIn {
-      from { opacity: 0; transform: translateX(-10px); }
-      to   { opacity: 1; transform: translateX(0); }
-    }
-    .cart-item-img {
-      width: 52px; height: 52px;
-      object-fit: cover;
-      border-radius: 3px;
-      border: 1px solid var(--pale);
-      filter: saturate(0.85);
-    }
-    .cart-item-info { flex: 1; }
-    .cart-item-name { font-size: 0.85rem; font-weight: 600; color: var(--navy); }
-    .cart-item-qty { font-size: 0.78rem; color: var(--mid); }
-    .cart-item-price { font-size: 0.92rem; font-weight: 600; color: var(--accent); white-space: nowrap; }
-    .cart-remove {
-      background: none; border: none; cursor: pointer;
-      color: var(--pale); font-size: 1rem;
-      padding: 0.2rem; border-radius: 2px;
-      transition: color 0.2s;
-    }
-    .cart-remove:hover { color: #c0392b; }
-
-    .cart-footer { padding: 1.25rem 1.5rem; background: var(--fog); border-top: 1px solid var(--pale); }
-    .cart-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; font-size: 0.88rem; color: var(--steel); }
-    .cart-total-row { display: flex; justify-content: space-between; align-items: center; font-weight: 700; font-size: 1.05rem; color: var(--navy); margin: 0.75rem 0 1.1rem; padding-top: 0.75rem; border-top: 1px solid var(--pale); }
-    .checkout-btn {
-      width: 100%; padding: 0.9rem;
-      background: var(--gold); color: #fff;
-      font-family: 'DM Sans', sans-serif; font-weight: 700;
-      font-size: 0.95rem; letter-spacing: 0.05em;
-      border: none; border-radius: 3px;
-      cursor: pointer; transition: background 0.2s;
-    }
-    .checkout-btn:hover { background: #9a6d27; }
-    .cart-note { font-size: 0.72rem; color: var(--mid); text-align: center; margin-top: 0.75rem; }
 
     /* ══════════════════════════════════════
        FOOTER
@@ -859,7 +806,6 @@
       }
 
       .contact-grid { grid-template-columns: 1fr; }
-      .shop-layout { grid-template-columns: 1fr; }
       .product-detail-grid { grid-template-columns: 1fr; }
       .nav-links { display: none; }
       .hamburger { display: flex; }
@@ -879,13 +825,11 @@
 
       .page-hero { padding: 50px 1.25rem 40px; }
       .page-hero .section-title { font-size: 1.9rem; }
-      .shop-layout { padding: 40px 1.25rem 60px; }
       .product-thumb-row { gap: 0.5rem; }
       .product-thumb { width: 64px; height: 64px; }
       .product-name { font-size: 1.6rem; }
       .product-price { font-size: 2rem; }
       .trust-badges { gap: 0.75rem; }
-      .cart-sidebar { margin-top: 2rem; position: static; }
       #contact { padding: 60px 1.25rem; }
       .contact-intro { max-width: 100%; }
       .about-grid { gap: 2rem; }
@@ -940,9 +884,6 @@
   <a href="#" data-contact="true">Contact</a>
   <a href="#" data-page="shop" style="background:var(--accent);color:#fff;font-weight:600;text-align:center;margin:0.5rem 1rem;border-radius:3px;">Order Now</a>
 </div>
-
-<!-- TOAST -->
-
 
 <!-- ══════════════════════════════════════
      HOME PAGE
@@ -1037,16 +978,16 @@
       </div>
       <form class="contact-form" id="contact-form">
         <div class="form-row">
-          <div class="form-field"><label>First Name</label><input type="text" name="first_name" placeholder="John" required/></div>
-          <div class="form-field"><label>Last Name</label><input type="text" name="last_name" placeholder="Smith"/></div>
+          <div class="form-field"><label for="cf-first-name">First Name</label><input id="cf-first-name" type="text" name="first_name" placeholder="John" required/></div>
+          <div class="form-field"><label for="cf-last-name">Last Name</label><input id="cf-last-name" type="text" name="last_name" placeholder="Smith"/></div>
         </div>
-        <div class="form-field"><label>Email</label><input type="email" name="email" placeholder="john@example.com" required/></div>
-        <div class="form-field"><label>Phone</label><input type="tel" name="phone" placeholder="(555) 000-0000"/></div>
+        <div class="form-field"><label for="cf-email">Email</label><input id="cf-email" type="email" name="email" placeholder="john@example.com" required/></div>
+        <div class="form-field"><label for="cf-phone">Phone</label><input id="cf-phone" type="tel" name="phone" placeholder="(555) 000-0000"/></div>
         <div class="form-field">
-          <label>I am a...</label>
-          <select name="customer_type"><option value="">Select one</option><option>Homeowner</option><option>HVAC Technician</option><option>Heating Contractor</option><option>Other</option></select>
+          <label for="cf-type">I am a...</label>
+          <select id="cf-type" name="customer_type"><option value="">Select one</option><option>Homeowner</option><option>HVAC Technician</option><option>Heating Contractor</option><option>Other</option></select>
         </div>
-        <div class="form-field"><label>Message</label><textarea name="message" placeholder="Tell us about your heating setup or what you need…"></textarea></div>
+        <div class="form-field"><label for="cf-message">Message</label><textarea id="cf-message" name="message" placeholder="Tell us about your heating setup or what you need…"></textarea></div>
         <button type="submit" class="form-submit">Send Message →</button>
         <div id="form-success" style="display:none; background:rgba(42,100,150,0.1); border:1px solid var(--accent); border-radius:4px; padding:1rem 1.25rem; color:var(--accent); font-weight:500; margin-top:0.5rem;">
           ✅ Message sent! We'll get back to you shortly.
@@ -1069,7 +1010,7 @@
   <!-- PETER BIO -->
   <section style="background:var(--paper)">
     <div class="about-grid">
-      <img class="about-img" src="https://jacobforcier.github.io/EZ-Way/peter.png" alt="Peter Forcier — Inventor of the #30 Catcher+"/>
+      <img class="about-img" loading="lazy" src="https://jacobforcier.github.io/EZ-Way/peter.png" alt="Peter Forcier — Inventor of the #30 Catcher+"/>
       <div>
         <div class="section-label">Meet the Maker</div>
         <h2 class="section-title">Peter Forcier</h2>
@@ -1094,15 +1035,15 @@
       </div>
       <div class="about-carousel">
         <div class="carousel-track" id="about-carousel-track">
-          <img src="https://static.wixstatic.com/media/7eba66_d3964341206e4963a856bac28957d034~mv2.jpg" alt="Catcher+ detail"/>
-          <img src="https://static.wixstatic.com/media/7eba66_e323a9d7f31f4887a8dc42561b667ed4~mv2.jpg" alt="Catcher+ in use"/>
-          <img src="https://static.wixstatic.com/media/7eba66_a022e29e231e4215a4890c772896934a~mv2.jpg" alt="Catcher+ close up"/>
-          <img src="https://static.wixstatic.com/media/7eba66_27dd8c33a1fb488095357bc623974f6f~mv2.jpg" alt="Catcher+ with Extrol Tank"/>
+          <img loading="lazy" src="https://static.wixstatic.com/media/7eba66_d3964341206e4963a856bac28957d034~mv2.jpg" alt="Catcher+ detail"/>
+          <img loading="lazy" src="https://static.wixstatic.com/media/7eba66_e323a9d7f31f4887a8dc42561b667ed4~mv2.jpg" alt="Catcher+ in use"/>
+          <img loading="lazy" src="https://static.wixstatic.com/media/7eba66_a022e29e231e4215a4890c772896934a~mv2.jpg" alt="Catcher+ close up"/>
+          <img loading="lazy" src="https://static.wixstatic.com/media/7eba66_27dd8c33a1fb488095357bc623974f6f~mv2.jpg" alt="Catcher+ with Extrol Tank"/>
         </div>
         <div class="carousel-controls">
-          <button class="carousel-btn" id="carousel-prev">&#8592;</button>
+          <button class="carousel-btn" id="carousel-prev" aria-label="Previous slide">&#8592;</button>
           <div class="carousel-dots" id="carousel-dots"></div>
-          <button class="carousel-btn" id="carousel-next">&#8594;</button>
+          <button class="carousel-btn" id="carousel-next" aria-label="Next slide">&#8594;</button>
         </div>
       </div>
     </div>
@@ -1114,29 +1055,29 @@
     <h2 class="section-title">HVAC Companies Who've<br>Already Used or Inquired</h2>
     <!-- Desktop: full-width row -->
     <div class="clients-row">
-      <img src="https://static.wixstatic.com/media/7eba66_30b1c8d7999d46adb991675ef3ac2f0e~mv2.png" alt="Dead River Company"/>
-      <img src="https://static.wixstatic.com/media/7eba66_a509a6cabb4b48cb98d4a96c051acaf2~mv2.jpg" alt="Swanzey Oil"/>
-      <img src="https://static.wixstatic.com/media/7eba66_60809830edc14149ac315490f92baf93~mv2.webp" alt="Davis Oil and Propane"/>
-      <img src="https://static.wixstatic.com/media/7eba66_1e0b8615591c412597d7293ba4e5c88e~mv2.png" alt="Pinney Plumbing and Heating"/>
-      <img src="https://static.wixstatic.com/media/7eba66_81c6a85980694c9a9f90e2fab7f1df09~mv2.avif" alt="EW Webb Company"/>
-      <img src="https://static.wixstatic.com/media/7eba66_fadca351d5e54482b7318883df0c7e17~mv2.png" alt="Cota and Cota"/>
+      <img loading="lazy" src="https://static.wixstatic.com/media/7eba66_30b1c8d7999d46adb991675ef3ac2f0e~mv2.png" alt="Dead River Company"/>
+      <img loading="lazy" src="https://static.wixstatic.com/media/7eba66_a509a6cabb4b48cb98d4a96c051acaf2~mv2.jpg" alt="Swanzey Oil"/>
+      <img loading="lazy" src="https://static.wixstatic.com/media/7eba66_60809830edc14149ac315490f92baf93~mv2.webp" alt="Davis Oil and Propane"/>
+      <img loading="lazy" src="https://static.wixstatic.com/media/7eba66_1e0b8615591c412597d7293ba4e5c88e~mv2.png" alt="Pinney Plumbing and Heating"/>
+      <img loading="lazy" src="https://static.wixstatic.com/media/7eba66_81c6a85980694c9a9f90e2fab7f1df09~mv2.avif" alt="EW Webb Company"/>
+      <img loading="lazy" src="https://static.wixstatic.com/media/7eba66_fadca351d5e54482b7318883df0c7e17~mv2.png" alt="Cota and Cota"/>
     </div>
     <!-- Mobile: auto-scrolling ticker -->
     <div class="clients-ticker">
       <div class="clients-ticker-inner">
-        <img src="https://static.wixstatic.com/media/7eba66_30b1c8d7999d46adb991675ef3ac2f0e~mv2.png" alt="Dead River Company"/>
-        <img src="https://static.wixstatic.com/media/7eba66_a509a6cabb4b48cb98d4a96c051acaf2~mv2.jpg" alt="Swanzey Oil"/>
-        <img src="https://static.wixstatic.com/media/7eba66_60809830edc14149ac315490f92baf93~mv2.webp" alt="Davis Oil and Propane"/>
-        <img src="https://static.wixstatic.com/media/7eba66_1e0b8615591c412597d7293ba4e5c88e~mv2.png" alt="Pinney Plumbing and Heating"/>
-        <img src="https://static.wixstatic.com/media/7eba66_81c6a85980694c9a9f90e2fab7f1df09~mv2.avif" alt="EW Webb Company"/>
-        <img src="https://static.wixstatic.com/media/7eba66_fadca351d5e54482b7318883df0c7e17~mv2.png" alt="Cota and Cota"/>
+        <img loading="lazy" src="https://static.wixstatic.com/media/7eba66_30b1c8d7999d46adb991675ef3ac2f0e~mv2.png" alt="Dead River Company"/>
+        <img loading="lazy" src="https://static.wixstatic.com/media/7eba66_a509a6cabb4b48cb98d4a96c051acaf2~mv2.jpg" alt="Swanzey Oil"/>
+        <img loading="lazy" src="https://static.wixstatic.com/media/7eba66_60809830edc14149ac315490f92baf93~mv2.webp" alt="Davis Oil and Propane"/>
+        <img loading="lazy" src="https://static.wixstatic.com/media/7eba66_1e0b8615591c412597d7293ba4e5c88e~mv2.png" alt="Pinney Plumbing and Heating"/>
+        <img loading="lazy" src="https://static.wixstatic.com/media/7eba66_81c6a85980694c9a9f90e2fab7f1df09~mv2.avif" alt="EW Webb Company"/>
+        <img loading="lazy" src="https://static.wixstatic.com/media/7eba66_fadca351d5e54482b7318883df0c7e17~mv2.png" alt="Cota and Cota"/>
         <!-- Duplicate set for seamless loop -->
-        <img src="https://static.wixstatic.com/media/7eba66_30b1c8d7999d46adb991675ef3ac2f0e~mv2.png" alt="Dead River Company"/>
-        <img src="https://static.wixstatic.com/media/7eba66_a509a6cabb4b48cb98d4a96c051acaf2~mv2.jpg" alt="Swanzey Oil"/>
-        <img src="https://static.wixstatic.com/media/7eba66_60809830edc14149ac315490f92baf93~mv2.webp" alt="Davis Oil and Propane"/>
-        <img src="https://static.wixstatic.com/media/7eba66_1e0b8615591c412597d7293ba4e5c88e~mv2.png" alt="Pinney Plumbing and Heating"/>
-        <img src="https://static.wixstatic.com/media/7eba66_81c6a85980694c9a9f90e2fab7f1df09~mv2.avif" alt="EW Webb Company"/>
-        <img src="https://static.wixstatic.com/media/7eba66_fadca351d5e54482b7318883df0c7e17~mv2.png" alt="Cota and Cota"/>
+        <img loading="lazy" src="https://static.wixstatic.com/media/7eba66_30b1c8d7999d46adb991675ef3ac2f0e~mv2.png" alt="Dead River Company"/>
+        <img loading="lazy" src="https://static.wixstatic.com/media/7eba66_a509a6cabb4b48cb98d4a96c051acaf2~mv2.jpg" alt="Swanzey Oil"/>
+        <img loading="lazy" src="https://static.wixstatic.com/media/7eba66_60809830edc14149ac315490f92baf93~mv2.webp" alt="Davis Oil and Propane"/>
+        <img loading="lazy" src="https://static.wixstatic.com/media/7eba66_1e0b8615591c412597d7293ba4e5c88e~mv2.png" alt="Pinney Plumbing and Heating"/>
+        <img loading="lazy" src="https://static.wixstatic.com/media/7eba66_81c6a85980694c9a9f90e2fab7f1df09~mv2.avif" alt="EW Webb Company"/>
+        <img loading="lazy" src="https://static.wixstatic.com/media/7eba66_fadca351d5e54482b7318883df0c7e17~mv2.png" alt="Cota and Cota"/>
       </div>
     </div>
   </section>
@@ -1147,7 +1088,7 @@
     <h2 class="section-title">Our Values</h2>
     <div class="values-grid">
       <div class="value-card"><div class="value-title">Simplicity First</div><p class="value-desc">Every decision is in service of making the job easier. No unnecessary complexity, ever.</p></div>
-      <div class="value-card"><div class="value-title">Built to Last</div><p class="value-desc">Rip-resistant polyester mesh, heavy-duty nylon, and reinforced steel grappling hooks — a catching bag built for the field, not a showroom shelf.</p></div>
+      <div class="value-card"><div class="value-title">Built to Last</div><p class="value-desc">Rip-resistant polyester mesh, heavy-duty nylon, and reinforced steel clips — a catching bag built for the field, not a showroom shelf.</p></div>
       <div class="value-card"><div class="value-title">Real Support</div><p class="value-desc">Call (603) 762-1850 or email <a href="mailto:easyway30@gmail.com">easyway30@gmail.com</a>. We're real people and we'll answer.</p></div>
       <div class="value-card"><div class="value-title">Patented Innovation</div><p class="value-desc">The #30 Catcher+ is a patented product — 40 years of hands-on experience distilled into one tool.</p></div>
     </div>
@@ -1194,12 +1135,7 @@
             A patented, field-tested tool built from rip-resistant polyester mesh, heavy-duty nylon, and reinforced steel clips. Designed for HVAC professionals who handle #30 and #60 Extrol tanks daily. Multi-use, durable, and built to last through years of real field work.
           </p>
 
-          <div style="background:var(--fog);border:1.5px solid var(--pale);border-radius:5px;padding:1.25rem 1.5rem;margin-bottom:1rem">
-            <div style="font-size:0.72rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent);margin-bottom:0.4rem">Ready to Order?</div>
-            <p style="font-size:0.95rem;color:var(--steel);margin-bottom:1rem">Online checkout coming soon. In the meantime, call or email us directly — we'll get you taken care of.</p>
-            <a href="tel:6037621850" class="btn btn-primary" style="display:block;text-align:center;margin-bottom:0.6rem">📞 Call (603) 762-1850</a>
-            <a href="mailto:easyway30@gmail.com" class="btn btn-outline" style="display:block;text-align:center">✉️ easyway30@gmail.com</a>
-          </div>
+          <div id='product-component-1775176662314' style="margin-bottom:1rem"></div>
           <div class="trust-badges">
             <div class="badge"><span class="badge-icon">🔒</span> Secure Checkout</div>
 
@@ -1220,7 +1156,7 @@
           <p style="margin-top:1rem">Featuring:</p>
           <ul>
             <li>Highly rip-resistant polyester fiber industrial-grade material, top to bottom</li>
-            <li>Reinforced steel grappling hooks and heavy-duty attachment points for a secure, confident grip</li>
+            <li>Reinforced steel clips and heavy-duty attachment points for a secure, confident grip</li>
             <li>Compatible with #30 and #60 Extrol expansion tanks</li>
             <li>Multi-use: fits a five gallon bucket — ideal for catching plumbing leaks or carrying tools on the job</li>
             <li>Designed for full-time use by heating industry professionals</li>
@@ -1230,10 +1166,10 @@
         <div class="tab-panel" id="tab-specs">
           <table>
             <tr><td>Product Name</td><td>EasyWay #30 Catcher Plus</td></tr>
-            <tr><td>Inventor</td><td>Peter Forcier — Keene / Marlborough, NH</td></tr>
+            <tr><td>Inventor</td><td>Peter Forcier — Keene, NH</td></tr>
             <tr><td>Patent</td><td>Yes — Patented Product</td></tr>
             <tr><td>Compatibility</td><td>#30 and #60 Extrol expansion tanks</td></tr>
-            <tr><td>Material</td><td>Rip-resistant polyester fiber mesh, black nylon structured material, reinforced steel grappling hooks</td></tr>
+            <tr><td>Material</td><td>Rip-resistant polyester fiber mesh, black nylon structured material, reinforced steel clips</td></tr>
             <tr><td>Tank Weight Capacity</td><td>Up to 60 lbs (full #60 Extrol tank)</td></tr>
             <tr><td>Use Cases</td><td>HVAC / heating maintenance, tool carrier</td></tr>
             <tr><td>Regular Price</td><td>$150.00</td></tr>
@@ -1246,31 +1182,15 @@
       </div>
     </div>
 
-    <!-- Cart Sidebar (hidden until Shopify is ready) -->
-    <div class="cart-sidebar" style="display:none">
-      <div class="cart-header">
-        <div class="cart-title">Your Cart</div>
-        <div class="cart-count-label" id="cart-count-label">0 items</div>
-      </div>
-      <div class="cart-items" id="cart-items">
-        <div class="cart-empty" id="cart-empty">Your cart is empty.</div>
-      </div>
-      <div class="cart-footer">
-    </span><span id="cart-shipping">—</span></div>
-        <div class="cart-total-row"><span>Total</span><span id="cart-total">$0.00</span></div>
-        <button class="checkout-btn" data-toast="Secure checkout coming soon!">Proceed to Checkout →</button>
-        <div class="cart-note">🔒 Secure & encrypted checkout</div>
-      </div>
-    </div>
   </div>
 </div>
 
 <!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox">
-  <button class="lightbox-close" id="lightbox-close">&#x2715;</button>
-  <button class="lightbox-prev" id="lightbox-prev">&#8592;</button>
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <button class="lightbox-close" id="lightbox-close" aria-label="Close image viewer">&#x2715;</button>
+  <button class="lightbox-prev" id="lightbox-prev" aria-label="Previous image">&#8592;</button>
   <img class="lightbox-img" id="lightbox-img" src="" alt=""/>
-  <button class="lightbox-next" id="lightbox-next">&#8594;</button>
+  <button class="lightbox-next" id="lightbox-next" aria-label="Next image">&#8594;</button>
   <div class="lightbox-counter" id="lightbox-counter"></div>
 </div>
 
@@ -1339,73 +1259,6 @@ document.addEventListener('DOMContentLoaded', function() {
       scrollToContact();
     });
   });
-
-  // ── CART STATE ──
-  var cart = [];
-  var PRICE = 89.99;
-
-  function addToCart() {
-    var qty = 1;
-    var existing = cart.find(function(i) { return i.id === 'EZW-30C'; });
-    if (existing) {
-      existing.qty += qty;
-    } else {
-      cart.push({ id: 'EZW-30C', name: 'EasyWay #30 Catcher+', price: PRICE, qty: qty });
-    }
-    renderCart();
-  }
-
-  function removeFromCart(id) {
-    cart = cart.filter(function(i) { return i.id !== id; });
-    renderCart();
-  }
-
-  function renderCart() {
-    var container = document.getElementById('cart-items');
-    var empty = document.getElementById('cart-empty');
-    var badge = document.getElementById('cart-badge');
-    var countLabel = document.getElementById('cart-count-label');
-    if (!container) return;
-
-    var totalQty = cart.reduce(function(s,i){ return s+i.qty; }, 0);
-    var subtotal  = cart.reduce(function(s,i){ return s+i.qty*i.price; }, 0);
-    var shipping  = 0;
-    var total     = subtotal + shipping;
-
-    badge.textContent = totalQty;
-    badge.classList.toggle('show', totalQty > 0);
-    countLabel.textContent = totalQty + ' item' + (totalQty !== 1 ? 's' : '');
-
-    if (cart.length === 0) {
-      if (empty) empty.style.display = 'block';
-      container.innerHTML = '';
-      if (empty) container.appendChild(empty);
-    } else {
-      if (empty) empty.style.display = 'none';
-      container.innerHTML = cart.map(function(item) {
-        return '<div class="cart-item">' +
-          '<img class="cart-item-img" src="https://static.wixstatic.com/media/7eba66_0e9cd757437b40fa938c0522a5edee7c~mv2.jpg" alt="' + item.name + '"/>' +
-          '<div class="cart-item-info"><div class="cart-item-name">' + item.name + '</div><div class="cart-item-qty">Qty: ' + item.qty + '</div></div>' +
-          '<div class="cart-item-price">$' + (item.qty * item.price).toFixed(2) + '</div>' +
-          '<button class="cart-remove" data-remove="' + item.id + '" title="Remove">&#x2715;</button>' +
-          '</div>';
-      }).join('');
-      // bind remove buttons
-      container.querySelectorAll('[data-remove]').forEach(function(btn) {
-        btn.addEventListener('click', function() { removeFromCart(btn.getAttribute('data-remove')); });
-      });
-    }
-
-    document.getElementById('cart-subtotal').textContent = '$' + subtotal.toFixed(2);
-    document.getElementById('cart-shipping').textContent = subtotal > 0 ? 'Calculated at checkout' : '—';
-    document.getElementById('cart-total').textContent = '$' + total.toFixed(2);
-  }
-
-
-
-  // ── ADD TO CART ──
-  var addBtn = document.querySelector('.add-to-cart-btn');
-  if (addBtn) addBtn.addEventListener('click', addToCart);
 
   // ── IMAGE SWITCHER ──
   document.querySelectorAll('.product-thumb').forEach(function(thumb) {
@@ -1557,6 +1410,115 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
 });
+
+// ── SHOPIFY BUY BUTTON ──
+(function () {
+  var scriptURL = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
+  if (window.ShopifyBuy) {
+    if (window.ShopifyBuy.UI) {
+      ShopifyBuyInit();
+    } else {
+      loadScript();
+    }
+  } else {
+    loadScript();
+  }
+  function loadScript() {
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = scriptURL;
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(script);
+    script.onload = ShopifyBuyInit;
+  }
+  function ShopifyBuyInit() {
+    var client = ShopifyBuy.buildClient({
+      domain: 'b7eemu-n0.myshopify.com',
+      storefrontAccessToken: 'af37d6ac696b829fbef552b54bf31c75',
+    });
+    ShopifyBuy.UI.onReady(client).then(function (ui) {
+      ui.createComponent('product', {
+        id: '15877446533507',
+        node: document.getElementById('product-component-1775176662314'),
+        moneyFormat: '%24%7B%7Bamount%7D%7D',
+        options: {
+          "product": {
+            "contents": {
+              "img": false,
+              "title": false,
+              "price": false,
+              "button": true
+            },
+            "styles": {
+              "product": {
+                "text-align": "left"
+              },
+              "button": {
+                "background-color": "#2a6496",
+                ":hover": { "background-color": "#265a87" },
+                ":focus": { "background-color": "#265a87" },
+                "width": "100%",
+                "padding": "1rem",
+                "font-size": "1rem",
+                "font-weight": "600",
+                "letter-spacing": "0.06em",
+                "border-radius": "3px"
+              }
+            },
+            "text": {
+              "button": "Add to Cart"
+            }
+          },
+          "modalProduct": {
+            "contents": {
+              "img": false,
+              "imgWithCarousel": true,
+              "button": false,
+              "buttonWithQuantity": true
+            },
+            "styles": {
+              "product": {
+                "@media (min-width: 601px)": {
+                  "max-width": "100%",
+                  "margin-left": "0px",
+                  "margin-bottom": "0px"
+                }
+              },
+              "button": {
+                "background-color": "#2a6496",
+                ":hover": { "background-color": "#265a87" },
+                ":focus": { "background-color": "#265a87" }
+              }
+            },
+            "text": { "button": "Add to cart" }
+          },
+          "cart": {
+            "styles": {
+              "button": {
+                "background-color": "#2a6496",
+                ":hover": { "background-color": "#265a87" },
+                ":focus": { "background-color": "#265a87" }
+              }
+            },
+            "text": {
+              "total": "Subtotal",
+              "button": "Checkout"
+            }
+          },
+          "toggle": {
+            "styles": {
+              "toggle": {
+                "background-color": "#2a6496",
+                ":hover": { "background-color": "#265a87" },
+                ":focus": { "background-color": "#265a87" }
+              }
+            }
+          }
+        },
+      });
+    });
+  }
+})();
+
 </script>
 </body>
 </html>
