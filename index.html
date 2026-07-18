@@ -1236,6 +1236,10 @@ document.addEventListener('DOMContentLoaded', function() {
     if (navEl) navEl.classList.add('active');
     window.scrollTo({ top: 0, behavior: 'smooth' });
     closeMenu();
+    // Nudge the embedded Shopify Buy Button to recalculate its iframe height.
+    // It can initialize at 0px when built inside a hidden page (display:none),
+    // so fire a resize once the target page becomes visible.
+    setTimeout(function() { window.dispatchEvent(new Event('resize')); }, 60);
   }
 
   function scrollToContact() {
